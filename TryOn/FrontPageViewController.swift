@@ -23,14 +23,14 @@ class FrontPageViewController: UIViewController, UINavigationControllerDelegate,
         takePhotoBtn = UIButton(frame: CGRectMake(self.view.frame.width/2 - 70, self.view.frame.height/2, 50, 50)) //TODO
         takePhotoBtn.setBackgroundImage(UIImage(named: "takephoto"), forState: UIControlState.Normal)
         takePhotoBtn.setBackgroundImage(UIImage(named:"selectphoto"), forState: UIControlState.Highlighted)
-        takePhotoBtn.addTarget(self, action: "takePhotoTouchUp", forControlEvents: UIControlEvents.TouchUpInside)
+        takePhotoBtn.addTarget(self, action: "takePhotoTouchUp:", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(takePhotoBtn)
         
         //select photo button
         selectPhotoBtn = UIButton(frame: CGRectMake(self.view.frame.width/2 + 20, self.view.frame.height/2, 50, 50)) //TODO
         selectPhotoBtn.setBackgroundImage(UIImage(named:"selectphoto"), forState: UIControlState.Normal)
         selectPhotoBtn.setBackgroundImage(UIImage(named:"takephoto"), forState: UIControlState.Highlighted)
-        selectPhotoBtn.addTarget(self, action: "selectPhotoTouchUp", forControlEvents: UIControlEvents.TouchUpInside)
+        selectPhotoBtn.addTarget(self, action: "selectPhotoTouchUp:", forControlEvents: UIControlEvents.TouchUpInside)
         self.view.addSubview(selectPhotoBtn)
         
         // Translucent nav bar
