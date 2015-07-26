@@ -36,7 +36,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="eI3-yF-yDj"/>
                     <connections>
-                        <segue destination="QUo-1b-mhA" kind="presentation" identifier="processPhoto" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="h3M-7q-cD2"/>
+                        <segue destination="QUo-1b-mhA" kind="show" identifier="processPhoto" id="h3M-7q-cD2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

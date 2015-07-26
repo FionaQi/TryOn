@@ -53,6 +53,7 @@ class FrontPageViewController: UIViewController, UINavigationControllerDelegate,
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "processPhoto") {
             let svc = segue.destinationViewController as! EditPageViewController
+            svc.modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
             svc.imagePassed = photo
         }
     }

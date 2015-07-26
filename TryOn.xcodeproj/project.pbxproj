@@ -14,6 +14,7 @@
 		B038F3491B64C5C800DEE8BA /* EditPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B038F3481B64C5C800DEE8BA /* EditPageViewController.swift */; };
 		B038F34D1B64C61200DEE8BA /* FrontPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B038F34C1B64C61200DEE8BA /* FrontPageViewController.swift */; };
 		B038F3501B64CF1F00DEE8BA /* ImgLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = B038F34F1B64CF1F00DEE8BA /* ImgLib.swift */; };
+		B038F3561B650DE200DEE8BA /* SavedViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B038F3551B650DE200DEE8BA /* SavedViewHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B038F3481B64C5C800DEE8BA /* EditPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageViewController.swift; sourceTree = "<group>"; };
 		B038F34C1B64C61200DEE8BA /* FrontPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontPageViewController.swift; sourceTree = "<group>"; };
 		B038F34F1B64CF1F00DEE8BA /* ImgLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLib.swift; sourceTree = "<group>"; };
+		B038F3551B650DE200DEE8BA /* SavedViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedViewHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				B038F34F1B64CF1F00DEE8BA /* ImgLib.swift */,
+				B038F3551B650DE200DEE8BA /* SavedViewHelper.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 				B038F34D1B64C61200DEE8BA /* FrontPageViewController.swift in Sources */,
 				B038F3491B64C5C800DEE8BA /* EditPageViewController.swift in Sources */,
 				B038F3361B64C57800DEE8BA /* AppDelegate.swift in Sources */,
+				B038F3561B650DE200DEE8BA /* SavedViewHelper.swift in Sources */,
 				B038F3501B64CF1F00DEE8BA /* ImgLib.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
