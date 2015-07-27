@@ -10,11 +10,32 @@ import UIKit
 
 class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate {
 
+
+    let filterSelectors: [GlassesType: Selector] = [
+        GlassesType.Hefe: "hefeFilter:",
+        GlassesType.Proces: "procesFilter:",
+        GlassesType.Dawn: "dawnFilter:",
+        GlassesType.Arkh: "arkhFilter:",
+        GlassesType.C1975: "c1975Filter:"
+    ]
+    
+    let filterOrder = [
+        GlassesType.C1975,
+        GlassesType.Arkh,
+        GlassesType.Dawn,
+        GlassesType.Proces,
+        GlassesType.Hefe,
+    ]
+    
     var cancelBtn: UIButton!
     var saveBtn: UIButton!
     var imagePassed: UIImage!
     var imageView: UIImageView!
     var scrollView: UIScrollView!
+    var toolbar: UIToolbar!
+    var filters: [UIBarButtonItem] = []
+    var selectedFilter: UIButton!
+    
     var savedFloatingView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +83,16 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         let backBtnImg = UIImage(named:"cross")?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0))
         UIBarButtonItem.appearance().setBackButtonBackgroundImage(backBtnImg, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.backItem?.title = ""
+        
+        //bottom tool bar
+        var toolbarItems: [UIBarButtonItem] = []
+        for glassType in filterOrder {
+            let filterBtn = BottomToolbarHelper.filterBtn(glassType, parentView: self, handler: filterSelectors[glassType]!)
+            toolbarItems.append(filterBtn)
+        }
+        
+        // Build scrollable bottom toolbar
+        toolbar = ScrollableBottomToolbar.insertScrollableBottomToolbar(self, btnArray: toolbarItems)
     }
     
     override func viewWillAppear(animated: Bool) {

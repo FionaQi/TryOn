@@ -15,6 +15,11 @@
 		B038F34D1B64C61200DEE8BA /* FrontPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B038F34C1B64C61200DEE8BA /* FrontPageViewController.swift */; };
 		B038F3501B64CF1F00DEE8BA /* ImgLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = B038F34F1B64CF1F00DEE8BA /* ImgLib.swift */; };
 		B038F3561B650DE200DEE8BA /* SavedViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B038F3551B650DE200DEE8BA /* SavedViewHelper.swift */; };
+		B038F3581B651C0200DEE8BA /* BottomToolBarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B038F3571B651C0200DEE8BA /* BottomToolBarHelper.swift */; };
+		B038F35A1B651ED500DEE8BA /* ColorSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = B038F3591B651ED500DEE8BA /* ColorSpace.swift */; };
+		B038F35C1B651F2700DEE8BA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B038F35B1B651F2700DEE8BA /* CoreGraphics.framework */; };
+		B038F35E1B651F4900DEE8BA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B038F35D1B651F4900DEE8BA /* UIKit.framework */; };
+		B038F3601B65219F00DEE8BA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B038F35F1B65219F00DEE8BA /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +33,11 @@
 		B038F34C1B64C61200DEE8BA /* FrontPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontPageViewController.swift; sourceTree = "<group>"; };
 		B038F34F1B64CF1F00DEE8BA /* ImgLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLib.swift; sourceTree = "<group>"; };
 		B038F3551B650DE200DEE8BA /* SavedViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedViewHelper.swift; sourceTree = "<group>"; };
+		B038F3571B651C0200DEE8BA /* BottomToolBarHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomToolBarHelper.swift; sourceTree = "<group>"; };
+		B038F3591B651ED500DEE8BA /* ColorSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSpace.swift; sourceTree = "<group>"; };
+		B038F35B1B651F2700DEE8BA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B038F35D1B651F4900DEE8BA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B038F35F1B65219F00DEE8BA /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +45,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B038F35E1B651F4900DEE8BA /* UIKit.framework in Frameworks */,
+				B038F35C1B651F2700DEE8BA /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +56,8 @@
 		B038F3291B64C57800DEE8BA = {
 			isa = PBXGroup;
 			children = (
+				B038F35D1B651F4900DEE8BA /* UIKit.framework */,
+				B038F35B1B651F2700DEE8BA /* CoreGraphics.framework */,
 				B038F3341B64C57800DEE8BA /* TryOn */,
 				B038F3331B64C57800DEE8BA /* Products */,
 			);
@@ -85,6 +99,9 @@
 			children = (
 				B038F34F1B64CF1F00DEE8BA /* ImgLib.swift */,
 				B038F3551B650DE200DEE8BA /* SavedViewHelper.swift */,
+				B038F3571B651C0200DEE8BA /* BottomToolBarHelper.swift */,
+				B038F3591B651ED500DEE8BA /* ColorSpace.swift */,
+				B038F35F1B65219F00DEE8BA /* Constants.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -160,11 +177,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B038F35A1B651ED500DEE8BA /* ColorSpace.swift in Sources */,
 				B038F34D1B64C61200DEE8BA /* FrontPageViewController.swift in Sources */,
 				B038F3491B64C5C800DEE8BA /* EditPageViewController.swift in Sources */,
+				B038F3581B651C0200DEE8BA /* BottomToolBarHelper.swift in Sources */,
 				B038F3361B64C57800DEE8BA /* AppDelegate.swift in Sources */,
 				B038F3561B650DE200DEE8BA /* SavedViewHelper.swift in Sources */,
 				B038F3501B64CF1F00DEE8BA /* ImgLib.swift in Sources */,
+				B038F3601B65219F00DEE8BA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
