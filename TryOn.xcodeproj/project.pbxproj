@@ -301,7 +301,7 @@
 				INFOPLIST_FILE = TryOn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.qf.TryOn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ardlab.TryOn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -314,7 +314,7 @@
 				INFOPLIST_FILE = TryOn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.qf.TryOn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ardlab.TryOn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -338,6 +338,7 @@
 				B038F3461B64C57800DEE8BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
