@@ -32,10 +32,20 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mca-1K-Dqh">
+                                <rect key="frame" x="125" y="178" width="133" height="30"/>
+                                <state key="normal" title="PostRequest"/>
+                                <connections>
+                                    <action selector="clickSendPostRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F8D-Ib-FWH"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="eI3-yF-yDj"/>
                     <connections>
+                        <outlet property="postRequestBtn" destination="Mca-1K-Dqh" id="kWu-QN-9nX"/>
                         <segue destination="QUo-1b-mhA" kind="show" identifier="processPhoto" id="h3M-7q-cD2"/>
                     </connections>
                 </viewController>

@@ -8,8 +8,10 @@
 
 import UIKit
 
+
 class FrontPageViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
+    @IBOutlet weak var postRequestBtn: UIButton!
     var photo: UIImage!
     var imagePicker: UIImagePickerController!
     var takePhotoBtn: UIButton!
@@ -68,12 +70,22 @@ class FrontPageViewController: UIViewController, UINavigationControllerDelegate,
         presentViewController(imagePicker, animated: true, completion: nil) //TODO
     }
     
+    @IBAction func clickSendPostRequest(sender: AnyObject) {
+        let postimage = UIImage(named:"test")
+        
+//       faceAPI.postRequestUploadImage(postimage)
+//        faceAPI.request()
+    }
     func selectPhotoTouchUp(sender: AnyObject?) {
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .SavedPhotosAlbum
         
         presentViewController(imagePicker, animated: true, completion: nil) //TODO
+        
+    }
+    
+    func postrequest() {
         
     }
     
