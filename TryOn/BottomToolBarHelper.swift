@@ -101,7 +101,7 @@ class ScrollableBottomToolbar {
         bottomToolbarScrollView.userInteractionEnabled = true
         
         // TODO Bug
-        bottomToolbar.frame = CGRect(x:0, y:0, width: parentView.view.frame.width/5 * CGFloat(btnArray.count + 1), height: bottomToolbar.frame.height)
+        bottomToolbar.frame = CGRect(x:0, y:0, width: parentView.view.frame.width/4 * CGFloat(btnArray.count + 1), height: bottomToolbar.frame.height)
         bottomToolbar.bounds = bottomToolbar.frame
         bottomToolbar.autoresizingMask = UIViewAutoresizing.None
         bottomToolbar.userInteractionEnabled = true
