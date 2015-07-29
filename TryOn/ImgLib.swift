@@ -15,8 +15,8 @@ class ImgLib{
 //        static let selectPhoto = UIImage(named: "selectphoto")
     }
     class FiltersPhoto {
-        static let _C1975 = UIImage(named:"round")
-        static let _Arkh = UIImage(named:"oval")
+        static let round = UIImage(named:"round")
+        static let Oval = UIImage(named:"oval")
         static let _Dawn = UIImage(named: "thin")
         static let _Process = UIImage(named:"girlglasses")
         static let _Hefe = UIImage(named:"ku")

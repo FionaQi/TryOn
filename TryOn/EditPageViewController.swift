@@ -12,16 +12,16 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
 
 
     let filterSelectors: [GlassesType: Selector] = [
-        GlassesType.Hefe: "hefeFilter:",
-        GlassesType.Proces: "procesFilter:",
+        GlassesType.round: "roundTry:",
+        GlassesType.Oval: "OvalTry:",
         GlassesType.Dawn: "dawnFilter:",
-        GlassesType.Arkh: "arkhFilter:",
-        GlassesType.C1975: "c1975Filter:"
+        GlassesType.Proces: "procesFilter:",
+        GlassesType.Hefe: "hefeFilter:"
     ]
     
     let filterOrder = [
-        GlassesType.C1975,
-        GlassesType.Arkh,
+        GlassesType.round,
+        GlassesType.Oval,
         GlassesType.Dawn,
         GlassesType.Proces,
         GlassesType.Hefe,
@@ -35,7 +35,14 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     var toolbar: UIToolbar!
     var filters: [UIBarButtonItem] = []
     var selectedFilter: UIButton!
+
+    //glass thing
+    var fgimageView: UIImageView!
+    var glassRect: CGRect!
     
+    
+    
+    var spin:UIActivityIndicatorView!
     var savedFloatingView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +100,20 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         
         // Build scrollable bottom toolbar
         toolbar = ScrollableBottomToolbar.insertScrollableBottomToolbar(self, btnArray: toolbarItems)
+        //spinner
+        spin = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        spin.center = self.view.center
+        spin.hidesWhenStopped = true;
+        self.view.addSubview(spin)
+        spin.startAnimating()
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            
+            faceAPI.uploadImage(self.imagePassed)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.spin.stopAnimating()
+            }
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -139,6 +160,38 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
          UIImageWriteToSavedPhotosAlbum(self.imagePassed, nil, nil, nil)
          SavedViewHelper.addFloatingView(self)
     }
+    
+    func roundTry(sender: UIButton) {
+//        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
+//            return
+//        }
+        let bgimage = ImgLib.FiltersPhoto.round!
+        glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
+   
+        selectedFilter = sender
+        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
+        self.ThreeDtransform(bgimage)
+        self.view.addSubview(fgimageView)
 
+    }
 
+    func tabChangeOn(oldFilter: UIButton, newFilter: UIButton) -> Bool{
+        if (oldFilter == newFilter) {
+            return false
+        }
+        oldFilter.layer.borderWidth = 0
+        newFilter.layer.borderColor = UIColor.brownColor().CGColor
+        newFilter.layer.borderWidth = 2
+//        spinner.startAnimating()
+        return true
+    }
+    
+    func ThreeDtransform(fgImage: UIImage) {
+        fgimageView.image = fgImage;
+        var transform:CATransform3D = CATransform3DIdentity;
+        transform.m34 = 1.0 / -500;
+        transform = CATransform3DRotate(transform, CGFloat(45.0 * M_PI / 180.0), 0, 1, CGFloat(0.0));
+        transform = CATransform3DTranslate(transform, 0.0, 0.0, CGFloat(100.0))
+        fgimageView.layer.transform = transform
+    }
 }

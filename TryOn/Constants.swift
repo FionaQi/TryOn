@@ -9,13 +9,13 @@
 import Foundation
 
 enum GlassesType {
-    case C1975, Arkh, Dawn, Proces, Hefe
+    case round, Oval, Dawn, Proces, Hefe
     func simpleDesp() -> String {
         switch self {
-        case .C1975:
-            return "1975"
-        case .Arkh:
-            return "Arkh"
+        case .round:
+            return "Round"
+        case .Oval:
+            return "Oval"
         case .Dawn:
             return "Dawn"
         case .Proces:

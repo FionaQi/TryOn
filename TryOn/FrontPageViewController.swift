@@ -79,14 +79,10 @@ class FrontPageViewController: UIViewController, UINavigationControllerDelegate,
         imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .SavedPhotosAlbum
-        
         presentViewController(imagePicker, animated: true, completion: nil) //TODO
         
     }
     
-    func postrequest() {
-        
-    }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         imagePicker.dismissViewControllerAnimated(true, completion: nil)

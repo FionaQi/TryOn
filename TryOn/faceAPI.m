@@ -46,11 +46,15 @@ struct facePoint{
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id result) {
         NSLog(@"Success:***** %@",  result);
- //       NSDictionary *jsonDict = (NSDictionary *)result;
-   
-        NSString *pitch = [[[result valueForKey:@"attributes"]valueForKey:@"headPose"]valueForKey:@"pitch"];
-        NSString *roll = [[[result valueForKey:@"attributes"]valueForKey:@"headPose"]valueForKey:@"roll"];
- //       double pi = [pitch doubleValue];
+        NSDictionary *JSON = (NSDictionary *)result;
+    
+        NSString *pitch = [[[JSON valueForKey:@"attributes"]valueForKey:@"headPose"]valueForKey:@"pitch"];
+  //      NSString *roll = [[[JSON objectForKey:@"attributes"]valueForKey:@"headPose"]valueForKey:@"roll"];
+        NSLog(@"Success:***** %@",  JSON);
+
+        NSLog(@"%@", pitch);
+       // CGFloat pi = [pitch floatValue];
+        //       double pi = [pitch doubleValue];
 //        
 //        [pitch floatValue];
 //        float ro = [roll floatValue];
@@ -66,7 +70,7 @@ struct facePoint{
 //        eyeRightOuter.x = x;
 //        eyeRightOuter.y = y;
         
-//        NSLog(@"%f", pi);
+    //    NSLog(@"%f", pitch);
 //        NSLog(@"%f", ro);
 //        NSLog(@"%d", yaw);
         
@@ -74,37 +78,6 @@ struct facePoint{
         NSLog(@"Error: %@ ***** %@", operation.responseString, error);
     }];
     [operation start];
-}
-
-+ (void) postRequestUploadImage: (UIImage*) image {
-    
-    NSDictionary *parameters = @{
-                                 @"entities": @true,
-                                 @"analyzesFaceLandmarks":@true,
-                                 @"analyzesAge":@false,
-                                 @"analyzesGender": @true,
-                                 @"analyzesHeadPose": @true
-                                 };
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    [manager.requestSerializer setValue:OxfordKey forHTTPHeaderField:@"Ocp-Apim-Subscription-Key"];
-    [manager.requestSerializer setValue:@"application/octet-stream" forHTTPHeaderField:@"Content-Type"];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", nil];
-    
-    [manager POST:@"https://api.projectoxford.ai/face/v0/detections?" parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        
-        UIImage *postimage = image;
-        NSData *data = UIImageJPEGRepresentation(postimage, 0.5); //压缩处理
-        [formData appendPartWithFileData:data name:@"image" fileName:@"test.jpg" mimeType:@"image/jpeg"];
-        
-    }
-    success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-
-    }];
 }
 
 @end

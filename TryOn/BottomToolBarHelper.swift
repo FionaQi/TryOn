@@ -11,15 +11,15 @@ import UIKit
 
 
 class BottomToolbarHelper {
-    // Classify by filter type, i.e. c1975, arkh ..., which is sub type of tap btn
+    // Classify by filter type, i.e. round, Oval ..., which is sub type of tap btn
     class func filterBtn (glassesType: GlassesType, parentView: UIViewController, handler: Selector) -> UIBarButtonItem {
         var filterBtn: UIBarButtonItem!
         switch glassesType {
-            case GlassesType.C1975:
-                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto._C1975!, glassesType: glassesType, parentView: parentView, handler: handler))
+            case GlassesType.round:
+                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto.round!, glassesType: glassesType, parentView: parentView, handler: handler))
                 break
-            case GlassesType.Arkh:
-                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto._Arkh!, glassesType: glassesType, parentView: parentView, handler: handler))
+            case GlassesType.Oval:
+                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto.Oval!, glassesType: glassesType, parentView: parentView, handler: handler))
                 break
             case GlassesType.Dawn:
                 filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto._Dawn!, glassesType: glassesType, parentView: parentView, handler: handler))

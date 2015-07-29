@@ -15,7 +15,6 @@
 @interface faceAPI : NSObject
 
 +(void) uploadImage:(UIImage *)image;
-+ (void) postRequestUploadImage: (UIImage*) image ;
 
 @end
 #endif /* faceAPI_h */
