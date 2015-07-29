@@ -50,7 +50,7 @@ struct facePoint{
    
         NSString *pitch = [[[result valueForKey:@"attributes"]valueForKey:@"headPose"]valueForKey:@"pitch"];
         NSString *roll = [[[result valueForKey:@"attributes"]valueForKey:@"headPose"]valueForKey:@"roll"];
-        double pi = [pitch doubleValue];
+ //       double pi = [pitch doubleValue];
 //        
 //        [pitch floatValue];
 //        float ro = [roll floatValue];
