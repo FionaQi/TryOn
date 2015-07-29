@@ -73,8 +73,7 @@ class FrontPageViewController: UIViewController, UINavigationControllerDelegate,
     @IBAction func clickSendPostRequest(sender: AnyObject) {
         let postimage = UIImage(named:"test")
         
-       faceAPI.postRequestUploadImage(postimage)
-//        faceAPI.request()
+       faceAPI.uploadImage(postimage)
     }
     func selectPhotoTouchUp(sender: AnyObject?) {
         imagePicker = UIImagePickerController()

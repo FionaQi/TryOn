@@ -14,10 +14,8 @@
 
 @interface faceAPI : NSObject
 
++(void) uploadImage:(UIImage *)image;
 + (void) postRequestUploadImage: (UIImage*) image ;
-//+ (ImageBuf*) getRGBAsFromUIImage : (UIImage*) image : (BOOL) ifResize ;
-+ (void)request;
-
 
 @end
 #endif /* faceAPI_h */

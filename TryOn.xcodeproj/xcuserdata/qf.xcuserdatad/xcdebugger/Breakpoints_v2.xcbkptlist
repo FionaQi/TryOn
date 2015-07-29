@@ -79,8 +79,40 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "104"
             endingLineNumber = "104"
-            landmarkName = "+request"
+            landmarkName = "+postRequestUploadImage:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__34+[faceAPI postRequestUploadImage:]_block_invoke122"
+                  moduleName = "TryOn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qf/Documents/TryOn/TryOn/faceAPI.m"
+                  timestampString = "459825491.354784"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__34+[faceAPI postRequestUploadImage:]_block_invoke_2"
+                  moduleName = "TryOn"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qf/Documents/TryOn/TryOn/faceAPI.m"
+                  timestampString = "459825491.355056"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "72">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
