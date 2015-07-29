@@ -37,7 +37,8 @@
 		B03DBBBE1B67174F005FDC21 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = B03DBBB41B67174F005FDC21 /* UIProgressView+AFNetworking.m */; };
 		B03DBBBF1B67174F005FDC21 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = B03DBBB61B67174F005FDC21 /* UIRefreshControl+AFNetworking.m */; };
 		B03DBBC01B67174F005FDC21 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = B03DBBB81B67174F005FDC21 /* UIWebView+AFNetworking.m */; };
-		B03DBBC51B6719CF005FDC21 /* faceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B03DBBC41B6719CF005FDC21 /* faceAPI.m */; };
+		B03DBBC51B6719CF005FDC21 /* faceAPI.mm in Sources */ = {isa = PBXBuildFile; fileRef = B03DBBC41B6719CF005FDC21 /* faceAPI.mm */; };
+		B0906A451B68BE20007820B8 /* faceLandmarks.m in Sources */ = {isa = PBXBuildFile; fileRef = B0906A441B68BE20007820B8 /* faceLandmarks.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,8 +95,10 @@
 		B03DBBB71B67174F005FDC21 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		B03DBBB81B67174F005FDC21 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		B03DBBC31B6718CE005FDC21 /* TryOn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TryOn-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		B03DBBC41B6719CF005FDC21 /* faceAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = faceAPI.m; sourceTree = "<group>"; };
+		B03DBBC41B6719CF005FDC21 /* faceAPI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = faceAPI.mm; sourceTree = "<group>"; };
 		B03DBBC61B6719E0005FDC21 /* faceAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = faceAPI.h; sourceTree = "<group>"; };
+		B0906A441B68BE20007820B8 /* faceLandmarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = faceLandmarks.m; sourceTree = "<group>"; };
+		B0906A491B68BF8B007820B8 /* faceLandmarks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = faceLandmarks.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,7 +145,7 @@
 				B038F33C1B64C57800DEE8BA /* Assets.xcassets */,
 				B038F33E1B64C57800DEE8BA /* LaunchScreen.storyboard */,
 				B038F3411B64C57800DEE8BA /* Info.plist */,
-				B03DBBC41B6719CF005FDC21 /* faceAPI.m */,
+				B03DBBC41B6719CF005FDC21 /* faceAPI.mm */,
 				B03DBBC61B6719E0005FDC21 /* faceAPI.h */,
 			);
 			path = TryOn;
@@ -153,6 +156,8 @@
 			children = (
 				B038F3481B64C5C800DEE8BA /* EditPageViewController.swift */,
 				B038F34C1B64C61200DEE8BA /* FrontPageViewController.swift */,
+				B0906A441B68BE20007820B8 /* faceLandmarks.m */,
+				B0906A491B68BF8B007820B8 /* faceLandmarks.h */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -294,7 +299,7 @@
 				B03DBBA51B67173E005FDC21 /* AFURLSessionManager.m in Sources */,
 				B03DBBA21B67173E005FDC21 /* AFURLConnectionOperation.m in Sources */,
 				B03DBBBF1B67174F005FDC21 /* UIRefreshControl+AFNetworking.m in Sources */,
-				B03DBBC51B6719CF005FDC21 /* faceAPI.m in Sources */,
+				B03DBBC51B6719CF005FDC21 /* faceAPI.mm in Sources */,
 				B03DBBBC1B67174F005FDC21 /* UIButton+AFNetworking.m in Sources */,
 				B03DBBBE1B67174F005FDC21 /* UIProgressView+AFNetworking.m in Sources */,
 				B03DBB9D1B67173E005FDC21 /* AFHTTPRequestOperation.m in Sources */,
@@ -303,6 +308,7 @@
 				B03DBB9E1B67173E005FDC21 /* AFHTTPRequestOperationManager.m in Sources */,
 				B038F34D1B64C61200DEE8BA /* FrontPageViewController.swift in Sources */,
 				B038F3491B64C5C800DEE8BA /* EditPageViewController.swift in Sources */,
+				B0906A451B68BE20007820B8 /* faceLandmarks.m in Sources */,
 				B03DBBBD1B67174F005FDC21 /* UIImageView+AFNetworking.m in Sources */,
 				B03DBB9F1B67173E005FDC21 /* AFHTTPSessionManager.m in Sources */,
 				B03DBBBA1B67174F005FDC21 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
@@ -433,7 +439,7 @@
 				INFOPLIST_FILE = TryOn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ardlab.TryOn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ardl.TryOn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TryOn-Bridging-Header.h";
 			};
@@ -447,7 +453,7 @@
 				INFOPLIST_FILE = TryOn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ardlab.TryOn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ardl.TryOn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TryOn-Bridging-Header.h";
 			};

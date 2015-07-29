@@ -39,11 +39,11 @@ class BottomToolbarHelper {
     
     class func setBtnImg(btnimg: UIImage, glassesType: GlassesType, parentView: UIViewController, handler: Selector) -> UIButton{
         let btn: UIButton = UIButton(frame: CGRectMake(0, 0, btnimg.size.width, btnimg.size.height))
-        let bgLayer:UIView = UIView(frame: CGRectMake(0, btnimg.size.height - 12 , btnimg.size.width, 12))
+        let bgLayer:UIView = UIView(frame: CGRectMake(0, btnimg.size.height  , btnimg.size.width, 10))
         bgLayer.backgroundColor = ColorSpace.View.BarBtnItemTitleBgLayerBottomColor
         btn.addSubview(bgLayer)
         bgLayer.layer.zPosition = 0
-        btn.titleEdgeInsets = UIEdgeInsetsMake(67.0 , 0.0, 0.0, 0.0 )
+        btn.titleEdgeInsets = UIEdgeInsetsMake(55.0 , 0.0, 0.0, 0.0 )
         btn.titleLabel?.font = UIFont.systemFontOfSize(CGFloat(11.0))
         btn.titleLabel?.layer.zPosition = 1
         btn.setTitle(glassesType.simpleDesp(), forState: UIControlState.Normal)
@@ -54,11 +54,11 @@ class BottomToolbarHelper {
     }
     class func setBtnImgNatual(btnimg: UIImage, parentView: UIViewController, handler: Selector) -> UIButton{
         let btn: UIButton = UIButton(frame: CGRectMake(0, 0, btnimg.size.width, btnimg.size.height))
-        let bgLayer:UIView = UIView(frame: CGRectMake(0, btnimg.size.height - 12 , btnimg.size.width, 12))
+        let bgLayer:UIView = UIView(frame: CGRectMake(0, btnimg.size.height  , btnimg.size.width, 10))
         bgLayer.backgroundColor = ColorSpace.View.BarBtnItemTitleBgLayerBottomColor
         btn.addSubview(bgLayer)
         bgLayer.layer.zPosition = 0
-        btn.titleEdgeInsets = UIEdgeInsetsMake(67.0 , 0.0, 0.0, 0.0 )
+        btn.titleEdgeInsets = UIEdgeInsetsMake(55.0 , 0.0, 0.0, 0.0 )
         btn.titleLabel?.font = UIFont.systemFontOfSize(CGFloat(11.0))
         btn.titleLabel?.layer.zPosition = 1
         btn.setTitle("Natual", forState: UIControlState.Normal)
@@ -89,7 +89,27 @@ class BottomToolbarHelper {
 
 class ScrollableBottomToolbar {
     class func insertScrollableBottomToolbar (parentView: UIViewController, btnArray: [UIBarButtonItem])->UIToolbar {
-        let bottomToolbar = UIToolbar(frame: CGRect(x: 0, y: parentView.view.frame.height * 0.87, width: parentView.view.frame.width, height: parentView.view.frame.height * 0.13))
+        //float layer
+        //only apply the blur if the user hasn't disabled transparency effects
+        if !UIAccessibilityIsReduceTransparencyEnabled() {
+        //    parentView.view.backgroundColor = UIColor.clearColor()
+            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = CGRectMake(parentView.view.frame.origin.x, parentView.view.frame.height * 0.9, parentView.view.frame.size.width, parentView.view.frame.height * 0.10)            ////RECT
+            parentView.view.addSubview(blurEffectView) //if you have more UIViews on screen, use insertSubview:belowSubview: to place it underneath the lowest view instead
+            
+            //add auto layout constraints so that the blur fills the screen upon rotating device
+//            blurEffectView.translatesAutoresizingMaskIntoConstraints = false
+//            parentView.view.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: parentView.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0))
+//            parentView.view.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: parentView.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0))
+//            parentView.view.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: parentView.view, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 0))
+//            parentView.view.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: parentView.view, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 0))
+        } else {
+            parentView.view.backgroundColor = ColorSpace.View.BarBtnItemTitleBgLayerTopColor
+        }
+        
+        //tool item
+        let bottomToolbar = UIToolbar(frame: CGRect(x: 0, y: parentView.view.frame.height * 0.9, width: parentView.view.frame.width, height: parentView.view.frame.height * 0.10))
         bottomToolbar.bounds = bottomToolbar.frame
         bottomToolbar.barStyle = UIBarStyle.BlackTranslucent
         

@@ -10,6 +10,7 @@
 #define TryOn_Bridging_Header_h
 
 #import "faceAPI.h"
+#import "faceLandmarks.h"
 #import "AFNetworking.h"
 
 #endif /* TryOn_Bridging_Header_h */

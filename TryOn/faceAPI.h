@@ -10,11 +10,12 @@
 #define faceAPI_h
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "faceLandmarks.h"
 #import "AFNetworking.h"
-
 @interface faceAPI : NSObject
 
 +(void) uploadImage:(UIImage *)image;
++(CGPoint)GetPointFromRequest: (NSDictionary*) JSONdic : (NSString *) Keyvalue;
 
 @end
 #endif /* faceAPI_h */

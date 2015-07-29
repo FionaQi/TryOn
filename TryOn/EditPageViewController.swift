@@ -46,7 +46,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     var savedFloatingView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.layer.backgroundColor = UIColor.yellowColor().CGColor
+        self.view.layer.backgroundColor = UIColor.whiteColor().CGColor
         //image view
         scrollView = UIScrollView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height))
         self.view.addSubview(scrollView)
@@ -97,6 +97,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
             let filterBtn = BottomToolbarHelper.filterBtn(glassType, parentView: self, handler: filterSelectors[glassType]!)
             toolbarItems.append(filterBtn)
         }
+        
         
         // Build scrollable bottom toolbar
         toolbar = ScrollableBottomToolbar.insertScrollableBottomToolbar(self, btnArray: toolbarItems)
