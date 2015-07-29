@@ -14,9 +14,9 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     let filterSelectors: [GlassesType: Selector] = [
         GlassesType.round: "roundTry:",
         GlassesType.Oval: "OvalTry:",
-        GlassesType.Dawn: "dawnFilter:",
-        GlassesType.Proces: "procesFilter:",
-        GlassesType.Hefe: "hefeFilter:"
+        GlassesType.Dawn: "DawnTry:",
+        GlassesType.Proces: "ProcessTry:",
+        GlassesType.Hefe: "HefeTry:"
     ]
     
     let filterOrder = [
@@ -114,6 +114,12 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
             
             self.landmarks = faceAPI.uploadImage(self.imagePassed)
+            
+            let bgimage = ImgLib.FiltersPhoto._Hefe!
+            self.glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
+            self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, self.glassRect.width, self.glassRect.height))
+            self.ThreeDtransform(bgimage, landmarks:self.landmarks)
+            self.view.addSubview(self.fgimageView)
             dispatch_async(dispatch_get_main_queue()) {
                 self.spin.stopAnimating()
             }
@@ -192,14 +198,54 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         self.view.addSubview(fgimageView)
         
     }
+    func DawnTry(sender: UIButton) {
+        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
+            return
+        }
+        let bgimage = ImgLib.FiltersPhoto._Dawn!
+        glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
+        
+        selectedFilter = sender
+        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
+        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
+        self.view.addSubview(fgimageView)
+        
+    }
+    
+    func ProcessTry(sender: UIButton) {
+        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
+            return
+        }
+        let bgimage = ImgLib.FiltersPhoto._Process!
+        glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
+        
+        selectedFilter = sender
+        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
+        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
+        self.view.addSubview(fgimageView)
+        
+    }
+    func HefeTry(sender: UIButton) {
+        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
+            return
+        }
+        let bgimage = ImgLib.FiltersPhoto._Hefe!
+        glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
+        
+        selectedFilter = sender
+        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
+        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
+        self.view.addSubview(fgimageView)
+        
+    }
     
     func tabChangeOn(oldFilter: UIButton, newFilter: UIButton) -> Bool{
         if (oldFilter == newFilter) {
             return false
         }
-        oldFilter.layer.borderWidth = 0
-        newFilter.layer.borderColor = UIColor.brownColor().CGColor
-        newFilter.layer.borderWidth = 2
+        oldFilter.layer.backgroundColor = UIColor.clearColor().CGColor
+        newFilter.layer.backgroundColor = ColorSpace.View.BarItemHighlightedBgColor.CGColor
+        fgimageView.removeFromSuperview()
 //        spinner.startAnimating()
         return true
     }
@@ -208,7 +254,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         fgimageView.image = fgImage;
         var transform:CATransform3D = CATransform3DIdentity;
         transform.m34 = 1.0 / -500;
-        let pitch:CGFloat = landmarks.pitch
+        var pitch:CGFloat = landmarks.pitch
         let roll =  landmarks.roll
         let yaw = landmarks.yaw
         transform = CATransform3DTranslate(transform, landmarks.leftEyeOuter.x - 5 , landmarks.leftEyeOuter.y - 10 , CGFloat(100.0))

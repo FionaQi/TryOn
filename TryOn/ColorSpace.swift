@@ -16,6 +16,7 @@ class ColorSpace {
         static let sliderBgLayerColor = UIColor(red:CGFloat(31/255.0), green: CGFloat(31/255.0), blue: CGFloat(31/255.0), alpha: CGFloat(0.8))
         static let BarBtnItemTitleBgLayerTopColor = UIColor(red:CGFloat(51/255.0), green: CGFloat(51/255.0), blue: CGFloat(51/255.0), alpha: CGFloat(0.2))
         static let BarBtnItemTitleBgLayerBottomColor = UIColor(red:CGFloat(51/255.0), green: CGFloat(51/255.0), blue: CGFloat(51/255.0), alpha: CGFloat(0.7))
+        static let BarItemHighlightedBgColor = UIColor(red:CGFloat(255/255.0), green: CGFloat(217/255.0), blue: CGFloat(156/255.0), alpha: CGFloat(0.4))
     }
 
 }
