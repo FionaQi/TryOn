@@ -53,8 +53,8 @@ static NSString *OxfordKey = @"4a61f11144f04d908a0275ce5885469d";
 
         NSLog(@"%@", s_pitch);
         NSString *string = @"3.2";
-        CGFloat pi = [string floatValue];
-        NSLog(@"%f", pi);
+//        CGFloat pi = [s_pitch floatValue];
+//        NSLog(@"%f", pi);
         //        NSLog(@"%f", ro);
         //        NSLog(@"%d", yaw);
         

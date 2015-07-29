@@ -14,7 +14,7 @@
 #import "AFNetworking.h"
 @interface faceAPI : NSObject
 
-+(void) uploadImage:(UIImage *)image;
++(faceLandmarks *) uploadImage:(UIImage *)image;
 +(CGPoint)GetPointFromRequest: (NSDictionary*) JSONdic : (NSString *) Keyvalue;
 
 @end

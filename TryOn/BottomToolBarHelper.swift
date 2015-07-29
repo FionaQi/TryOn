@@ -66,24 +66,6 @@ class BottomToolbarHelper {
         btn.addTarget(parentView, action: handler, forControlEvents: UIControlEvents.TouchUpInside)
         return btn
     }
-    // Classify by category, i.e. Beauty, Filter ...
-//    class func tapBtn (btnType: BtnType, tabType: Category, parentView: UIViewController, handler: Selector) -> UIBarButtonItem {
-//        var tabBtn: UIBarButtonItem!
-//        
-//        if (btnType == BtnType.Plain){
-//            switch tabType {
-//            case Category.Beauty:
-//                tabBtn = UIBarButtonItem(title: Category.Beauty.simpleDesp(), style: .Plain, target: parentView, action: handler)
-//                break
-//            default:
-//                tabBtn = UIBarButtonItem(title: "Unkown", style: .Plain, target: parentView, action: handler)
-//            }
-//        } else if (btnType == BtnType.Img) {
-//            // TODO
-//        }
-//        
-//        return tabBtn
-//    }
     
 }
 

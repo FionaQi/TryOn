@@ -39,7 +39,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     //glass thing
     var fgimageView: UIImageView!
     var glassRect: CGRect!
-    
+    var landmarks: faceLandmarks!
     
     
     var spin:UIActivityIndicatorView!
@@ -52,6 +52,8 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         self.view.addSubview(scrollView)
         
         imageView = UIImageView(image: imagePassed)
+        
+       // landmarks.initfaceLandmarks()
         self.automaticallyAdjustsScrollViewInsets = false;
         self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
         scrollView.delegate = self
@@ -98,7 +100,8 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
             toolbarItems.append(filterBtn)
         }
         
-        
+        let beautyButton = BottomToolbarHelper.setBtnImgNatual(ImgLib.FiltersPhoto._Dawn!, parentView: self, handler: "beautyTab:")
+        self.selectedFilter = beautyButton
         // Build scrollable bottom toolbar
         toolbar = ScrollableBottomToolbar.insertScrollableBottomToolbar(self, btnArray: toolbarItems)
         //spinner
@@ -110,7 +113,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
             
-            faceAPI.uploadImage(self.imagePassed)
+            self.landmarks = faceAPI.uploadImage(self.imagePassed)
             dispatch_async(dispatch_get_main_queue()) {
                 self.spin.stopAnimating()
             }
@@ -163,19 +166,33 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     }
     
     func roundTry(sender: UIButton) {
-//        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
-//            return
-//        }
+        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
+            return
+        }
         let bgimage = ImgLib.FiltersPhoto.round!
         glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
    
         selectedFilter = sender
         fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
-        self.ThreeDtransform(bgimage)
+        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
         self.view.addSubview(fgimageView)
 
     }
 
+    func OvalTry(sender: UIButton) {
+        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
+            return
+        }
+        let bgimage = ImgLib.FiltersPhoto.Oval!
+        glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
+        
+        selectedFilter = sender
+        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
+        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
+        self.view.addSubview(fgimageView)
+        
+    }
+    
     func tabChangeOn(oldFilter: UIButton, newFilter: UIButton) -> Bool{
         if (oldFilter == newFilter) {
             return false
@@ -187,12 +204,18 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         return true
     }
     
-    func ThreeDtransform(fgImage: UIImage) {
+    func ThreeDtransform(fgImage: UIImage, landmarks: faceLandmarks) {
         fgimageView.image = fgImage;
         var transform:CATransform3D = CATransform3DIdentity;
         transform.m34 = 1.0 / -500;
-        transform = CATransform3DRotate(transform, CGFloat(45.0 * M_PI / 180.0), 0, 1, CGFloat(0.0));
-        transform = CATransform3DTranslate(transform, 0.0, 0.0, CGFloat(100.0))
+        let pitch:CGFloat = landmarks.pitch
+        let roll =  landmarks.roll
+        let yaw = landmarks.yaw
+        transform = CATransform3DTranslate(transform, landmarks.leftEyeOuter.x - 5 , landmarks.leftEyeOuter.y - 10 , CGFloat(100.0))
+        transform = CATransform3DRotate(transform, CGFloat(Double(pitch) * M_PI / 180.0), 0, 1, CGFloat(0.0));
+        transform = CATransform3DRotate(transform, CGFloat(Double(roll) * M_PI / 180.0), 0, 0, CGFloat(1.0));
+        transform = CATransform3DRotate(transform, CGFloat(Double(yaw) * M_PI / 180.0), 0, 0, CGFloat(1.0));
+        
         fgimageView.layer.transform = transform
     }
 }
