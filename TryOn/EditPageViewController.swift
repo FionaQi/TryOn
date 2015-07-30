@@ -241,8 +241,16 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         let glassWidth :CGFloat = 1.2 * sqrt( deltaX * deltaX + deltaY * deltaY )
         let glassHeight: CGFloat = ( glassWidth / bgimage.size.width ) * bgimage.size.height
         NSLog("width = %f, height = %f", glassWidth, glassHeight)
-        self.glassRect = CGRectMake(0, 0,  bgimage.size.width, bgimage.size.height)
+       
         self.fgimageView = UIImageView(frame: CGRectMake(0, 0, glassWidth, glassHeight))
+        //translate
+        let eye_centerX = self.getAbsWidth( ( landmarks.leftEyeOuter.x + landmarks.rightEyeOuter.x ) / 2 )
+        let eye_centerY = self.getAbsHeight( ( landmarks.leftEyeOuter.y + landmarks.rightEyeOuter.y ) / 2 )
+   //     let glass_originCenterX = glassesWidth / 2
+   //     let glass_originCenterY = glassesHeight / 2
+        NSLog("eye center: %f", eye_centerX)
+   //     NSLog("glass center: %f", glass_originCenterX)
+        self.fgimageView.center = CGPointMake(eye_centerX, eye_centerY)
         self.ThreeDtransform(bgimage, landmarks:self.landmarks, glassesWidth:glassWidth, glassesHeight:glassHeight)
         self.view.addSubview(self.fgimageView)
     }
@@ -255,17 +263,11 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         let roll =  landmarks.roll
         let yaw = landmarks.yaw
         
-        //translate
-        let eye_centerX = self.getAbsWidth( ( landmarks.leftEyeOuter.x + landmarks.rightEyeOuter.x ) / 2 )
-        let eye_centerY = self.getAbsHeight( ( landmarks.leftEyeOuter.y + landmarks.rightEyeOuter.y ) / 2 )
-        let glass_originCenterX = glassesWidth / 2
-        let glass_originCenterY = glassesHeight / 2
-        NSLog("eye center: %f", eye_centerX)
-        NSLog("glass center: %f", glass_originCenterX)
+
         transform = CATransform3DRotate(transform, CGFloat(Double(yaw) * M_PI / 180.0), 0, 1, 0)
         transform = CATransform3DRotate(transform, CGFloat(Double(pitch) * M_PI / 180.0), 1, 0, CGFloat(0.0))
         transform = CATransform3DRotate(transform, CGFloat(Double(roll) * M_PI / 180.0), 0, 0, CGFloat(1.0))
-        transform = CATransform3DTranslate(transform, eye_centerX - glass_originCenterX  , eye_centerY - glass_originCenterY , 0.0 )
+   //     transform = CATransform3DTranslate(transform, eye_centerX - glass_originCenterX  , eye_centerY - glass_originCenterY , 0.0 )
 
         transform = CATransform3DTranslate(transform, 0.0  , 0.0 , CGFloat(50) )
         fgimageView.layer.transform = transform
