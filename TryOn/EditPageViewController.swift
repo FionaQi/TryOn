@@ -165,6 +165,18 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
 /* *************
     button click action
 ************* */
+    func transformClickedGlass(bgimage: UIImage) {
+        //caculate rect
+        let deltaX = self.getAbsWidth(self.landmarks.rightEyeOuter.x - self.landmarks.leftEyeOuter.x)
+        let deltaY = self.getAbsHeight(self.landmarks.rightEyeOuter.y - self.landmarks.leftEyeOuter.y)
+        let glassWidth :CGFloat = 1.2 * sqrt( deltaX * deltaX + deltaY * deltaY )
+        let glassHeight: CGFloat = ( glassWidth / bgimage.size.width ) * bgimage.size.height
+        NSLog("width = %f, height = %f", glassWidth, glassHeight)
+        self.glassRect = CGRectMake(0, 0,  bgimage.size.width, bgimage.size.height)
+        self.fgimageView = UIImageView(frame: CGRectMake(0, 0, glassWidth, glassHeight))
+        self.ThreeDtransform(bgimage, landmarks:self.landmarks, glassesWidth:glassWidth, glassesHeight:glassHeight)
+        self.view.addSubview(self.fgimageView)
+    }
     func SaveBtnTouchUp(sender: AnyObject) {
          UIImageWriteToSavedPhotosAlbum(self.imagePassed, nil, nil, nil)
          SavedViewHelper.addFloatingView(self)
@@ -174,26 +186,9 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         if (!tabChangeOn(selectedFilter, newFilter: sender)) {
             return
         }
-        //caculate rect
         let bgimage = ImgLib.FiltersPhoto.round!
-        let deltaX = self.getAbsWidth(self.landmarks.rightEyeOuter.x - self.landmarks.leftEyeOuter.x)
-        let deltaY = self.getAbsHeight(self.landmarks.rightEyeOuter.y - self.landmarks.leftEyeOuter.y)
-        let glassWidth :CGFloat = 1.2 * sqrt( deltaX * deltaX + deltaY * deltaY )
-        let glassHeight: CGFloat = ( glassWidth / bgimage.size.width ) * bgimage.size.height
-        NSLog("width = %f, height = %f", glassWidth, glassHeight)
-        self.glassRect = CGRectMake(0, 0,  bgimage.size.width, bgimage.size.height)
-        self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, glassWidth, glassHeight))
-        self.ThreeDtransform(bgimage, landmarks:self.landmarks, glassesWidth:glassWidth, glassesHeight:glassHeight)
-        self.view.addSubview(self.fgimageView)
-        
-//        let bgimage = ImgLib.FiltersPhoto.round!
-//        glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
-   
+        transformClickedGlass(bgimage)
         selectedFilter = sender
-//        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
-//        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
-//        self.view.addSubview(fgimageView)
-
     }
 
     func OvalTry(sender: UIButton) {
@@ -202,46 +197,16 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         }
         
         let bgimage = ImgLib.FiltersPhoto.Oval!
-        let deltaX = self.landmarks.rightEyeOuter.x - self.landmarks.leftEyeOuter.x
-        let deltaY = self.landmarks.rightEyeOuter.y - self.landmarks.leftEyeOuter.y
-        let glassWidth :CGFloat = sqrt( deltaX * deltaX + deltaY * deltaY )
-        let glassHeight: CGFloat = ( glassWidth / bgimage.size.width ) * bgimage.size.height
-        NSLog("width = %f, height = %f", glassWidth, glassHeight)
-        self.glassRect = CGRectMake(0, 0,  bgimage.size.width, bgimage.size.height)
-        self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, self.getAbsWidth(glassWidth), self.getAbsHeight(glassHeight)))
-        self.ThreeDtransform(bgimage, landmarks:self.landmarks, glassesWidth:glassWidth, glassesHeight:glassHeight)
-        self.view.addSubview(self.fgimageView)
-        
-     //   glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
-        
+        transformClickedGlass(bgimage)
         selectedFilter = sender
-//        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
-//        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
-//        self.view.addSubview(fgimageView)
-        
     }
     func DawnTry(sender: UIButton) {
         if (!tabChangeOn(selectedFilter, newFilter: sender)) {
             return
         }
         let bgimage = ImgLib.FiltersPhoto._Dawn!
-        let deltaX = self.landmarks.rightEyeOuter.x - self.landmarks.leftEyeOuter.x
-        let deltaY = self.landmarks.rightEyeOuter.y - self.landmarks.leftEyeOuter.y
-        let glassWidth :CGFloat = self.getAbsWidth( sqrt( deltaX * deltaX + deltaY * deltaY ) )
-        let glassHeight: CGFloat = self.getAbsHeight( ( glassWidth / bgimage.size.width ) * bgimage.size.height )
-        NSLog("width = %f, height = %f", glassWidth, glassHeight)
-        self.glassRect = CGRectMake(0, 0,  bgimage.size.width, bgimage.size.height)
-        self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, glassWidth, glassHeight))
-        self.ThreeDtransform(bgimage, landmarks:self.landmarks, glassesWidth:glassWidth, glassesHeight:glassHeight)
-        self.view.addSubview(self.fgimageView)
-        
-     //   glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
-        
+        transformClickedGlass(bgimage)
         selectedFilter = sender
-//        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
-//        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
-//        self.view.addSubview(fgimageView)
-        
     }
     
     func ProcessTry(sender: UIButton) {
@@ -249,37 +214,17 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
             return
         }
         let bgimage = ImgLib.FiltersPhoto._Process!
-        
-        let deltaX = self.landmarks.rightEyeOuter.x - self.landmarks.leftEyeOuter.x
-        let deltaY = self.landmarks.rightEyeOuter.y - self.landmarks.leftEyeOuter.y
-        let glassWidth :CGFloat = sqrt( deltaX * deltaX + deltaY * deltaY )
-        let glassHeight: CGFloat = ( glassWidth / bgimage.size.width ) * bgimage.size.height
-        NSLog("width = %f, height = %f", glassWidth, glassHeight)
-        self.glassRect = CGRectMake(0, 0,  bgimage.size.width, bgimage.size.height)
-        self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, self.getAbsWidth(glassWidth), self.getAbsHeight(glassHeight)))
-        self.ThreeDtransform(bgimage, landmarks:self.landmarks, glassesWidth:glassWidth, glassesHeight:glassHeight)
-        self.view.addSubview(self.fgimageView)
-        
-//        glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
-        
+        transformClickedGlass(bgimage)
         selectedFilter = sender
-//        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
-//        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
-//        self.view.addSubview(fgimageView)
-        
     }
+    
     func HefeTry(sender: UIButton) {
         if (!tabChangeOn(selectedFilter, newFilter: sender)) {
             return
         }
         let bgimage = ImgLib.FiltersPhoto._Hefe!
-        glassRect = CGRectMake(0, 0,  bgimage.size.width, bgimage.size.height)
-        
+        transformClickedGlass(bgimage)
         selectedFilter = sender
-//        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
-//        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
-//        self.view.addSubview(fgimageView)
-        
     }
     
     func tabChangeOn(oldFilter: UIButton, newFilter: UIButton) -> Bool{
@@ -289,7 +234,6 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         oldFilter.layer.backgroundColor = UIColor.clearColor().CGColor
         newFilter.layer.backgroundColor = ColorSpace.View.BarItemHighlightedBgColor.CGColor
         fgimageView.removeFromSuperview()
-//        spinner.startAnimating()
         return true
     }
     
