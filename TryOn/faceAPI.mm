@@ -44,26 +44,37 @@ static NSString *OxfordKey = @"4a61f11144f04d908a0275ce5885469d";
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id result) {
-        NSLog(@"Success:***** %@",  result);
-        NSDictionary *JSON = (NSDictionary *)result;
+    //    NSLog(@"Success:***** %@",  result);
+  //      NSLog(@"Success:***** %@",  result[0]);
     
-        NSString *s_pitch = [[[JSON valueForKey:@"attributes"]valueForKey:@"headPose"]valueForKey:@"pitch"];
-        NSString *s_roll = [[[JSON valueForKey:@"attributes"]valueForKey:@"headPose"]valueForKey:@"roll"];
-        NSString *s_yaw = [[[result valueForKey:@"attributes"]valueForKey:@"headPose"]valueForKey:@"yaw"];
+        
+        NSString *s_pitch = [[[result[0] valueForKey:@"attributes"]valueForKey:@"headPose"]valueForKey:@"pitch"];
+        NSString *s_roll = [[[result[0] valueForKey:@"attributes"]valueForKey:@"headPose"]valueForKey:@"roll"];
+        NSString *s_yaw = [[[result[0] valueForKey:@"attributes"]valueForKey:@"headPose"]valueForKey:@"yaw"];
 
-        NSLog(@"%@", s_pitch);
-        NSString *string = @"3.2";
-//        CGFloat pi = [s_pitch floatValue];
-//        NSLog(@"%f", pi);
-        //        NSLog(@"%f", ro);
-        //        NSLog(@"%d", yaw);
+//        CGFloat pitch = [s_pitch floatValue];
+//        CGFloat roll = [s_roll floatValue];
+//        CGFloat yaw = [s_yaw floatValue];
+//        
+//        NSLog(@"%f", pitch);
+//        NSLog(@"%f", roll);
+//        NSLog(@"%f", yaw);
+
         
-//        landmarks.pitch = [s_pitch floatValue];
-//        landmarks.roll = [s_roll floatValue];
-//        landmarks.yaw = [s_yaw floatValue];
-//        landmarks.leftEyeOuter = [self GetPointFromRequest:JSON :@"eyeLeftOuter"];
-//        landmarks.rightEyeOuter = [self GetPointFromRequest:JSON :@"eyeRightOuter"];
-        
+        landmarks.pitch = [s_pitch floatValue];
+        landmarks.roll = [s_roll floatValue];
+        landmarks.yaw = [s_yaw floatValue];
+        int x = [[[[result[0] valueForKey:@"faceLandmarks"]valueForKey:@"eyeLeftOuter"]valueForKey:@"x"] intValue];
+        int y = [[[[result[0] valueForKey:@"faceLandmarks"]valueForKey:@"eyeLeftOuter"]valueForKey:@"y"] intValue];
+        landmarks.leftEyeOuter = CGPointMake(CGFloat(x), CGFloat(y));
+        int x2 = [[[[result[0] valueForKey:@"faceLandmarks"]valueForKey:@"eyeRightOuter"]valueForKey:@"x"] intValue];
+        int y2 = [[[[result[0] valueForKey:@"faceLandmarks"]valueForKey:@"eyeRightOuter"]valueForKey:@"y"] intValue];
+        landmarks.rightEyeOuter = CGPointMake(CGFloat(x2), CGFloat(y2));
+        NSLog(@"pitch= %f", landmarks.pitch);
+        NSLog(@"roll= %f", landmarks.roll);
+        NSLog(@"yaw= %f", landmarks.yaw);
+        NSLog(@"left eye outer x: %d y: %d", x, y);
+        NSLog(@"right eye outer x: %d y: %d", x2, y2);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@ ***** %@", operation.responseString, error);
     }];
@@ -71,13 +82,4 @@ static NSString *OxfordKey = @"4a61f11144f04d908a0275ce5885469d";
     return landmarks;
 }
 
-+(CGPoint)GetPointFromRequest: (NSDictionary*) JSONdic : andKey: (NSString *) Keyvalue {
-    NSString *x_Str = [[[JSONdic valueForKey:@"faceLandmarks"]valueForKey:Keyvalue]valueForKey:@"x"];
-    NSString *y_Str = [[[JSONdic valueForKey:@"faceLandmarks"]valueForKey:Keyvalue]valueForKey:@"y"];
-    char fnameStr[10];
- //   fnameStr =[x_Str UTF8String];
-    float x = [x_Str floatValue];
-    CGPoint rect;
-    return rect;
-}
 @end

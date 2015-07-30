@@ -15,7 +15,6 @@
 @interface faceAPI : NSObject
 
 +(faceLandmarks *) uploadImage:(UIImage *)image;
-+(CGPoint)GetPointFromRequest: (NSDictionary*) JSONdic : (NSString *) Keyvalue;
 
 @end
 #endif /* faceAPI_h */

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate {
 
 
@@ -114,16 +115,14 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
             
             self.landmarks = faceAPI.uploadImage(self.imagePassed)
-            
-            let bgimage = ImgLib.FiltersPhoto._Hefe!
-            self.glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
+            self.glassRect = CGRectMake(50, 50,  100, 30)
             self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, self.glassRect.width, self.glassRect.height))
-            self.ThreeDtransform(bgimage, landmarks:self.landmarks)
             self.view.addSubview(self.fgimageView)
             dispatch_async(dispatch_get_main_queue()) {
                 self.spin.stopAnimating()
             }
         }
+       
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -175,13 +174,25 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         if (!tabChangeOn(selectedFilter, newFilter: sender)) {
             return
         }
+        //caculate rect
         let bgimage = ImgLib.FiltersPhoto.round!
-        glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
+        let deltaX = self.getAbsWidth(self.landmarks.rightEyeOuter.x - self.landmarks.leftEyeOuter.x)
+        let deltaY = self.getAbsHeight(self.landmarks.rightEyeOuter.y - self.landmarks.leftEyeOuter.y)
+        let glassWidth :CGFloat = 1.2 * sqrt( deltaX * deltaX + deltaY * deltaY )
+        let glassHeight: CGFloat = ( glassWidth / bgimage.size.width ) * bgimage.size.height
+        NSLog("width = %f, height = %f", glassWidth, glassHeight)
+        self.glassRect = CGRectMake(0, 0,  bgimage.size.width, bgimage.size.height)
+        self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, glassWidth, glassHeight))
+        self.ThreeDtransform(bgimage, landmarks:self.landmarks, glassesWidth:glassWidth, glassesHeight:glassHeight)
+        self.view.addSubview(self.fgimageView)
+        
+//        let bgimage = ImgLib.FiltersPhoto.round!
+//        glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
    
         selectedFilter = sender
-        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
-        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
-        self.view.addSubview(fgimageView)
+//        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
+//        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
+//        self.view.addSubview(fgimageView)
 
     }
 
@@ -189,13 +200,24 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         if (!tabChangeOn(selectedFilter, newFilter: sender)) {
             return
         }
+        
         let bgimage = ImgLib.FiltersPhoto.Oval!
-        glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
+        let deltaX = self.landmarks.rightEyeOuter.x - self.landmarks.leftEyeOuter.x
+        let deltaY = self.landmarks.rightEyeOuter.y - self.landmarks.leftEyeOuter.y
+        let glassWidth :CGFloat = sqrt( deltaX * deltaX + deltaY * deltaY )
+        let glassHeight: CGFloat = ( glassWidth / bgimage.size.width ) * bgimage.size.height
+        NSLog("width = %f, height = %f", glassWidth, glassHeight)
+        self.glassRect = CGRectMake(0, 0,  bgimage.size.width, bgimage.size.height)
+        self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, self.getAbsWidth(glassWidth), self.getAbsHeight(glassHeight)))
+        self.ThreeDtransform(bgimage, landmarks:self.landmarks, glassesWidth:glassWidth, glassesHeight:glassHeight)
+        self.view.addSubview(self.fgimageView)
+        
+     //   glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
         
         selectedFilter = sender
-        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
-        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
-        self.view.addSubview(fgimageView)
+//        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
+//        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
+//        self.view.addSubview(fgimageView)
         
     }
     func DawnTry(sender: UIButton) {
@@ -203,12 +225,22 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
             return
         }
         let bgimage = ImgLib.FiltersPhoto._Dawn!
-        glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
+        let deltaX = self.landmarks.rightEyeOuter.x - self.landmarks.leftEyeOuter.x
+        let deltaY = self.landmarks.rightEyeOuter.y - self.landmarks.leftEyeOuter.y
+        let glassWidth :CGFloat = self.getAbsWidth( sqrt( deltaX * deltaX + deltaY * deltaY ) )
+        let glassHeight: CGFloat = self.getAbsHeight( ( glassWidth / bgimage.size.width ) * bgimage.size.height )
+        NSLog("width = %f, height = %f", glassWidth, glassHeight)
+        self.glassRect = CGRectMake(0, 0,  bgimage.size.width, bgimage.size.height)
+        self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, glassWidth, glassHeight))
+        self.ThreeDtransform(bgimage, landmarks:self.landmarks, glassesWidth:glassWidth, glassesHeight:glassHeight)
+        self.view.addSubview(self.fgimageView)
+        
+     //   glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
         
         selectedFilter = sender
-        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
-        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
-        self.view.addSubview(fgimageView)
+//        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
+//        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
+//        self.view.addSubview(fgimageView)
         
     }
     
@@ -217,12 +249,23 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
             return
         }
         let bgimage = ImgLib.FiltersPhoto._Process!
-        glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
+        
+        let deltaX = self.landmarks.rightEyeOuter.x - self.landmarks.leftEyeOuter.x
+        let deltaY = self.landmarks.rightEyeOuter.y - self.landmarks.leftEyeOuter.y
+        let glassWidth :CGFloat = sqrt( deltaX * deltaX + deltaY * deltaY )
+        let glassHeight: CGFloat = ( glassWidth / bgimage.size.width ) * bgimage.size.height
+        NSLog("width = %f, height = %f", glassWidth, glassHeight)
+        self.glassRect = CGRectMake(0, 0,  bgimage.size.width, bgimage.size.height)
+        self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, self.getAbsWidth(glassWidth), self.getAbsHeight(glassHeight)))
+        self.ThreeDtransform(bgimage, landmarks:self.landmarks, glassesWidth:glassWidth, glassesHeight:glassHeight)
+        self.view.addSubview(self.fgimageView)
+        
+//        glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
         
         selectedFilter = sender
-        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
-        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
-        self.view.addSubview(fgimageView)
+//        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
+//        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
+//        self.view.addSubview(fgimageView)
         
     }
     func HefeTry(sender: UIButton) {
@@ -230,12 +273,12 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
             return
         }
         let bgimage = ImgLib.FiltersPhoto._Hefe!
-        glassRect = CGRectMake(50, 50,  bgimage.size.width, bgimage.size.height)
+        glassRect = CGRectMake(0, 0,  bgimage.size.width, bgimage.size.height)
         
         selectedFilter = sender
-        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
-        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
-        self.view.addSubview(fgimageView)
+//        fgimageView = UIImageView(frame: CGRectMake(glassRect.origin.x, glassRect.origin.y, glassRect.width, glassRect.height))
+//        self.ThreeDtransform(bgimage, landmarks:self.landmarks)
+//        self.view.addSubview(fgimageView)
         
     }
     
@@ -250,18 +293,36 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         return true
     }
     
-    func ThreeDtransform(fgImage: UIImage, landmarks: faceLandmarks) {
-        fgimageView.image = fgImage;
-        var transform:CATransform3D = CATransform3DIdentity;
-        transform.m34 = 1.0 / -500;
-        var pitch:CGFloat = landmarks.pitch
+    func getAbsWidth(inputW: CGFloat) -> CGFloat {
+        return CGFloat(inputW) / self.imagePassed.size.width * 375.0
+    }
+    
+    func getAbsHeight(inputH: CGFloat) -> CGFloat {
+        NSLog("imageView.frame.origin.y = %f", imageView.frame.origin.y)
+        return CGFloat(inputH) / self.imagePassed.size.width * 375.0 + imageView.frame.origin.y
+    }
+    
+    func ThreeDtransform(fgImage: UIImage, landmarks: faceLandmarks, glassesWidth: CGFloat, glassesHeight:CGFloat ) {
+        fgimageView.image = fgImage
+        var transform:CATransform3D = CATransform3DIdentity
+        transform.m34 = 1.0 / -500
+        let pitch:CGFloat = landmarks.pitch
         let roll =  landmarks.roll
         let yaw = landmarks.yaw
-        transform = CATransform3DTranslate(transform, landmarks.leftEyeOuter.x - 5 , landmarks.leftEyeOuter.y - 10 , CGFloat(100.0))
-        transform = CATransform3DRotate(transform, CGFloat(Double(pitch) * M_PI / 180.0), 0, 1, CGFloat(0.0));
-        transform = CATransform3DRotate(transform, CGFloat(Double(roll) * M_PI / 180.0), 0, 0, CGFloat(1.0));
-        transform = CATransform3DRotate(transform, CGFloat(Double(yaw) * M_PI / 180.0), 0, 0, CGFloat(1.0));
         
+        //translate
+        let eye_centerX = self.getAbsWidth( ( landmarks.leftEyeOuter.x + landmarks.rightEyeOuter.x ) / 2 )
+        let eye_centerY = self.getAbsHeight( ( landmarks.leftEyeOuter.y + landmarks.rightEyeOuter.y ) / 2 )
+        let glass_originCenterX = glassesWidth / 2
+        let glass_originCenterY = glassesHeight / 2
+        NSLog("eye center: %f", eye_centerX)
+        NSLog("glass center: %f", glass_originCenterX)
+        transform = CATransform3DRotate(transform, CGFloat(Double(yaw) * M_PI / 180.0), 0, 1, 0)
+        transform = CATransform3DRotate(transform, CGFloat(Double(pitch) * M_PI / 180.0), 1, 0, CGFloat(0.0))
+        transform = CATransform3DRotate(transform, CGFloat(Double(roll) * M_PI / 180.0), 0, 0, CGFloat(1.0))
+        transform = CATransform3DTranslate(transform, eye_centerX - glass_originCenterX  , eye_centerY - glass_originCenterY , 0.0 )
+
+        transform = CATransform3DTranslate(transform, 0.0  , 0.0 , CGFloat(100) )
         fgimageView.layer.transform = transform
     }
 }
