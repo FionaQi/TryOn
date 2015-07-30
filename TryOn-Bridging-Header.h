@@ -12,5 +12,6 @@
 #import "faceAPI.h"
 #import "faceLandmarks.h"
 #import "AFNetworking.h"
+#import "FeHandwriting.h"
 
 #endif /* TryOn_Bridging_Header_h */

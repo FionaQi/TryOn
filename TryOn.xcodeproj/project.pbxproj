@@ -39,6 +39,7 @@
 		B03DBBC01B67174F005FDC21 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = B03DBBB81B67174F005FDC21 /* UIWebView+AFNetworking.m */; };
 		B03DBBC51B6719CF005FDC21 /* faceAPI.mm in Sources */ = {isa = PBXBuildFile; fileRef = B03DBBC41B6719CF005FDC21 /* faceAPI.mm */; };
 		B0906A451B68BE20007820B8 /* faceLandmarks.m in Sources */ = {isa = PBXBuildFile; fileRef = B0906A441B68BE20007820B8 /* faceLandmarks.m */; };
+		B0906A4E1B69BDC4007820B8 /* FeHandwriting.m in Sources */ = {isa = PBXBuildFile; fileRef = B0906A4D1B69BDC4007820B8 /* FeHandwriting.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +100,8 @@
 		B03DBBC61B6719E0005FDC21 /* faceAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = faceAPI.h; sourceTree = "<group>"; };
 		B0906A441B68BE20007820B8 /* faceLandmarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = faceLandmarks.m; sourceTree = "<group>"; };
 		B0906A491B68BF8B007820B8 /* faceLandmarks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = faceLandmarks.h; sourceTree = "<group>"; };
+		B0906A4C1B69BDB1007820B8 /* FeHandwriting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeHandwriting.h; sourceTree = "<group>"; };
+		B0906A4D1B69BDC4007820B8 /* FeHandwriting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeHandwriting.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +138,8 @@
 		B038F3341B64C57800DEE8BA /* TryOn */ = {
 			isa = PBXGroup;
 			children = (
+				B0906A4B1B69BD50007820B8 /* Animation */,
+				B0906A4A1B69BD21007820B8 /* faceAPI */,
 				B03DBBC31B6718CE005FDC21 /* TryOn-Bridging-Header.h */,
 				B03DBBA61B67174F005FDC21 /* UIKit+AFNetworking */,
 				B03DBB891B67173E005FDC21 /* AFNetworking */,
@@ -145,8 +150,6 @@
 				B038F33C1B64C57800DEE8BA /* Assets.xcassets */,
 				B038F33E1B64C57800DEE8BA /* LaunchScreen.storyboard */,
 				B038F3411B64C57800DEE8BA /* Info.plist */,
-				B03DBBC41B6719CF005FDC21 /* faceAPI.mm */,
-				B03DBBC61B6719E0005FDC21 /* faceAPI.h */,
 			);
 			path = TryOn;
 			sourceTree = "<group>";
@@ -156,8 +159,6 @@
 			children = (
 				B038F3481B64C5C800DEE8BA /* EditPageViewController.swift */,
 				B038F34C1B64C61200DEE8BA /* FrontPageViewController.swift */,
-				B0906A441B68BE20007820B8 /* faceLandmarks.m */,
-				B0906A491B68BF8B007820B8 /* faceLandmarks.h */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -223,6 +224,26 @@
 				B03DBBB81B67174F005FDC21 /* UIWebView+AFNetworking.m */,
 			);
 			path = "UIKit+AFNetworking";
+			sourceTree = "<group>";
+		};
+		B0906A4A1B69BD21007820B8 /* faceAPI */ = {
+			isa = PBXGroup;
+			children = (
+				B0906A441B68BE20007820B8 /* faceLandmarks.m */,
+				B0906A491B68BF8B007820B8 /* faceLandmarks.h */,
+				B03DBBC61B6719E0005FDC21 /* faceAPI.h */,
+				B03DBBC41B6719CF005FDC21 /* faceAPI.mm */,
+			);
+			name = faceAPI;
+			sourceTree = "<group>";
+		};
+		B0906A4B1B69BD50007820B8 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				B0906A4D1B69BDC4007820B8 /* FeHandwriting.m */,
+				B0906A4C1B69BDB1007820B8 /* FeHandwriting.h */,
+			);
+			name = Animation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,6 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0906A4E1B69BDC4007820B8 /* FeHandwriting.m in Sources */,
 				B03DBBA51B67173E005FDC21 /* AFURLSessionManager.m in Sources */,
 				B03DBBA21B67173E005FDC21 /* AFURLConnectionOperation.m in Sources */,
 				B03DBBBF1B67174F005FDC21 /* UIRefreshControl+AFNetworking.m in Sources */,

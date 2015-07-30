@@ -165,18 +165,6 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
 /* *************
     button click action
 ************* */
-    func transformClickedGlass(bgimage: UIImage) {
-        //caculate rect
-        let deltaX = self.getAbsWidth(self.landmarks.rightEyeOuter.x - self.landmarks.leftEyeOuter.x)
-        let deltaY = self.getAbsHeight(self.landmarks.rightEyeOuter.y - self.landmarks.leftEyeOuter.y)
-        let glassWidth :CGFloat = 1.2 * sqrt( deltaX * deltaX + deltaY * deltaY )
-        let glassHeight: CGFloat = ( glassWidth / bgimage.size.width ) * bgimage.size.height
-        NSLog("width = %f, height = %f", glassWidth, glassHeight)
-        self.glassRect = CGRectMake(0, 0,  bgimage.size.width, bgimage.size.height)
-        self.fgimageView = UIImageView(frame: CGRectMake(0, 0, glassWidth, glassHeight))
-        self.ThreeDtransform(bgimage, landmarks:self.landmarks, glassesWidth:glassWidth, glassesHeight:glassHeight)
-        self.view.addSubview(self.fgimageView)
-    }
     func SaveBtnTouchUp(sender: AnyObject) {
          UIImageWriteToSavedPhotosAlbum(self.imagePassed, nil, nil, nil)
          SavedViewHelper.addFloatingView(self)
@@ -246,6 +234,19 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         return CGFloat(inputH) / self.imagePassed.size.width * 375.0 + imageView.frame.origin.y
     }
     
+    func transformClickedGlass(bgimage: UIImage) {
+        //caculate rect
+        let deltaX = self.getAbsWidth(self.landmarks.rightEyeOuter.x - self.landmarks.leftEyeOuter.x)
+        let deltaY = self.getAbsHeight(self.landmarks.rightEyeOuter.y - self.landmarks.leftEyeOuter.y)
+        let glassWidth :CGFloat = 1.2 * sqrt( deltaX * deltaX + deltaY * deltaY )
+        let glassHeight: CGFloat = ( glassWidth / bgimage.size.width ) * bgimage.size.height
+        NSLog("width = %f, height = %f", glassWidth, glassHeight)
+        self.glassRect = CGRectMake(0, 0,  bgimage.size.width, bgimage.size.height)
+        self.fgimageView = UIImageView(frame: CGRectMake(0, 0, glassWidth, glassHeight))
+        self.ThreeDtransform(bgimage, landmarks:self.landmarks, glassesWidth:glassWidth, glassesHeight:glassHeight)
+        self.view.addSubview(self.fgimageView)
+    }
+    
     func ThreeDtransform(fgImage: UIImage, landmarks: faceLandmarks, glassesWidth: CGFloat, glassesHeight:CGFloat ) {
         fgimageView.image = fgImage
         var transform:CATransform3D = CATransform3DIdentity
@@ -266,7 +267,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         transform = CATransform3DRotate(transform, CGFloat(Double(roll) * M_PI / 180.0), 0, 0, CGFloat(1.0))
         transform = CATransform3DTranslate(transform, eye_centerX - glass_originCenterX  , eye_centerY - glass_originCenterY , 0.0 )
 
-        transform = CATransform3DTranslate(transform, 0.0  , 0.0 , CGFloat(100) )
+        transform = CATransform3DTranslate(transform, 0.0  , 0.0 , CGFloat(50) )
         fgimageView.layer.transform = transform
     }
 }
