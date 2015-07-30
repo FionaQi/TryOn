@@ -44,6 +44,7 @@
                         <color key="backgroundColor" red="1" green="0.85226810708939227" blue="0.61356730147230754" alpha="0.44" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="eI3-yF-yDj"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="postRequestBtn" destination="Mca-1K-Dqh" id="kWu-QN-9nX"/>
                         <segue destination="QUo-1b-mhA" kind="show" identifier="processPhoto" id="h3M-7q-cD2"/>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreGraphics
 
 
 class FrontPageViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -66,6 +67,8 @@ class FrontPageViewController: UIViewController, UINavigationControllerDelegate,
         imagePicker.delegate = self
         imagePicker.sourceType = .Camera
         imagePicker.cameraDevice = .Front
+        let cameraTransform: CGAffineTransform = CGAffineTransformMakeScale(1.25, 1.25)
+        imagePicker.cameraViewTransform = cameraTransform
         
         presentViewController(imagePicker, animated: true, completion: nil) //TODO
     }
