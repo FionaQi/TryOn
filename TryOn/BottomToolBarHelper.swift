@@ -21,6 +21,32 @@ class BottomToolbarHelper {
             case GlassesType.Oval:
                 filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto.Oval!, glassesType: glassesType, parentView: parentView, handler: handler))
                 break
+            case GlassesType.Wayfares:
+                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto.Wayfares!, glassesType: glassesType, parentView: parentView, handler: handler))
+                break
+            case GlassesType.Cateye:
+                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto.Cateye!, glassesType: glassesType, parentView: parentView, handler: handler))
+                break
+
+            case GlassesType.Thick:
+                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto.Thick!, glassesType: glassesType, parentView: parentView, handler: handler))
+                break
+            case GlassesType.Nerd:
+                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto.Nerd!, glassesType: glassesType, parentView: parentView, handler: handler))
+                break
+
+            case GlassesType.Geek:
+                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto.Geek!, glassesType: glassesType, parentView: parentView, handler: handler))
+                break
+            case GlassesType.Fly:
+                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto.Fly!, glassesType: glassesType, parentView: parentView, handler: handler))
+                break
+            case GlassesType.Grandpa:
+                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto.Grandpa!, glassesType: glassesType, parentView: parentView, handler: handler))
+                break
+            case GlassesType.Hanjian:
+                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto.Hanjian!, glassesType: glassesType, parentView: parentView, handler: handler))
+                break
             case GlassesType.Dawn:
                 filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto._Dawn!, glassesType: glassesType, parentView: parentView, handler: handler))
                 

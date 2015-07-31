@@ -38,6 +38,7 @@
 		B03DBBBF1B67174F005FDC21 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = B03DBBB61B67174F005FDC21 /* UIRefreshControl+AFNetworking.m */; };
 		B03DBBC01B67174F005FDC21 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = B03DBBB81B67174F005FDC21 /* UIWebView+AFNetworking.m */; };
 		B03DBBC51B6719CF005FDC21 /* faceAPI.mm in Sources */ = {isa = PBXBuildFile; fileRef = B03DBBC41B6719CF005FDC21 /* faceAPI.mm */; };
+		B079C9251B69CEB5000FE040 /* animBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B079C9241B69CEB5000FE040 /* animBackground.swift */; };
 		B0906A451B68BE20007820B8 /* faceLandmarks.m in Sources */ = {isa = PBXBuildFile; fileRef = B0906A441B68BE20007820B8 /* faceLandmarks.m */; };
 		B0906A4E1B69BDC4007820B8 /* FeHandwriting.m in Sources */ = {isa = PBXBuildFile; fileRef = B0906A4D1B69BDC4007820B8 /* FeHandwriting.m */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,7 @@
 		B03DBBC31B6718CE005FDC21 /* TryOn-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TryOn-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		B03DBBC41B6719CF005FDC21 /* faceAPI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = faceAPI.mm; sourceTree = "<group>"; };
 		B03DBBC61B6719E0005FDC21 /* faceAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = faceAPI.h; sourceTree = "<group>"; };
+		B079C9241B69CEB5000FE040 /* animBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = animBackground.swift; sourceTree = "<group>"; };
 		B0906A441B68BE20007820B8 /* faceLandmarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = faceLandmarks.m; sourceTree = "<group>"; };
 		B0906A491B68BF8B007820B8 /* faceLandmarks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = faceLandmarks.h; sourceTree = "<group>"; };
 		B0906A4C1B69BDB1007820B8 /* FeHandwriting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeHandwriting.h; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 			children = (
 				B0906A4D1B69BDC4007820B8 /* FeHandwriting.m */,
 				B0906A4C1B69BDB1007820B8 /* FeHandwriting.h */,
+				B079C9241B69CEB5000FE040 /* animBackground.swift */,
 			);
 			name = Animation;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				B03DBBBB1B67174F005FDC21 /* UIAlertView+AFNetworking.m in Sources */,
 				B03DBB9E1B67173E005FDC21 /* AFHTTPRequestOperationManager.m in Sources */,
 				B038F34D1B64C61200DEE8BA /* FrontPageViewController.swift in Sources */,
+				B079C9251B69CEB5000FE040 /* animBackground.swift in Sources */,
 				B038F3491B64C5C800DEE8BA /* EditPageViewController.swift in Sources */,
 				B0906A451B68BE20007820B8 /* faceLandmarks.m in Sources */,
 				B03DBBBD1B67174F005FDC21 /* UIImageView+AFNetworking.m in Sources */,

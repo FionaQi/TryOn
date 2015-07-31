@@ -15,6 +15,14 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     let filterSelectors: [GlassesType: Selector] = [
         GlassesType.round: "roundTry:",
         GlassesType.Oval: "OvalTry:",
+        GlassesType.Wayfares: "WayfaresTry:",
+        GlassesType.Cateye: "CateyeTry:",
+        GlassesType.Thick: "ThickTry:",
+        GlassesType.Nerd: "NerdTry:",
+        GlassesType.Geek: "GeekTry:",
+        GlassesType.Fly: "FlyTry:",
+        GlassesType.Grandpa: "GrandpaTry:",
+        GlassesType.Hanjian: "HanjianTry:",
         GlassesType.Dawn: "DawnTry:",
         GlassesType.Proces: "ProcessTry:",
         GlassesType.Hefe: "HefeTry:"
@@ -23,6 +31,14 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     let filterOrder = [
         GlassesType.round,
         GlassesType.Oval,
+        GlassesType.Wayfares,
+        GlassesType.Cateye,
+        GlassesType.Thick,
+        GlassesType.Nerd,
+        GlassesType.Geek,
+        GlassesType.Fly,
+        GlassesType.Grandpa,
+        GlassesType.Hanjian,
         GlassesType.Dawn,
         GlassesType.Proces,
         GlassesType.Hefe,
@@ -106,11 +122,22 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         // Build scrollable bottom toolbar
         toolbar = ScrollableBottomToolbar.insertScrollableBottomToolbar(self, btnArray: toolbarItems)
         //spinner
-        spin = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        spin.center = self.view.center
-        spin.hidesWhenStopped = true;
-        self.view.addSubview(spin)
-        spin.startAnimating()
+//        spin = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+//        spin.center = self.view.center
+//        spin.hidesWhenStopped = true;
+//        self.view.addSubview(spin)
+//        spin.startAnimating()
+        animBackground.addFloatingView(self)
+        let animationLoader = FeHandwriting(view: self.view)
+        
+        self.view.addSubview(animationLoader)
+        animationLoader.showWhileExecutingBlock({
+                sleep(6)
+            }, completion: {
+                animationLoader.hidden = true
+                animBackground.removeFloatingView(self)
+        })
+        
         let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
         dispatch_async(dispatch_get_global_queue(priority, 0)) {
             
@@ -119,7 +146,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
             self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, self.glassRect.width, self.glassRect.height))
             self.view.addSubview(self.fgimageView)
             dispatch_async(dispatch_get_main_queue()) {
-                self.spin.stopAnimating()
+//                self.spin.stopAnimating()
             }
         }
        
@@ -174,7 +201,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         if (!tabChangeOn(selectedFilter, newFilter: sender)) {
             return
         }
-        let bgimage = ImgLib.FiltersPhoto.round!
+        let bgimage = ImgLib.glass_ori.Round_ori!
         transformClickedGlass(bgimage)
         selectedFilter = sender
     }
@@ -184,7 +211,76 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
             return
         }
         
-        let bgimage = ImgLib.FiltersPhoto.Oval!
+        let bgimage = ImgLib.glass_ori.Oval_ori!
+        transformClickedGlass(bgimage)
+        selectedFilter = sender
+    }
+    func WayfaresTry(sender: UIButton) {
+        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
+            return
+        }
+        let bgimage = ImgLib.FiltersPhoto.Wayfares!
+        transformClickedGlass(bgimage)
+        selectedFilter = sender
+    }
+    
+    func CateyeTry(sender: UIButton) {
+        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
+            return
+        }
+        
+        let bgimage = ImgLib.FiltersPhoto.Cateye!
+        transformClickedGlass(bgimage)
+        selectedFilter = sender
+    }
+    func ThickTry(sender: UIButton) {
+        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
+            return
+        }
+        let bgimage = ImgLib.FiltersPhoto.Thick!
+        transformClickedGlass(bgimage)
+        selectedFilter = sender
+    }
+    
+    func NerdTry(sender: UIButton) {
+        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
+            return
+        }
+        let bgimage = ImgLib.FiltersPhoto.Nerd!
+        transformClickedGlass(bgimage)
+        selectedFilter = sender
+    }
+    func GeekTry(sender: UIButton) {
+        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
+            return
+        }
+        let bgimage = ImgLib.FiltersPhoto.Geek!
+        transformClickedGlass(bgimage)
+        selectedFilter = sender
+    }
+    
+    func FlyTry(sender: UIButton) {
+        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
+            return
+        }
+        let bgimage = ImgLib.FiltersPhoto.Fly!
+        transformClickedGlass(bgimage)
+        selectedFilter = sender
+    }
+    func GrandpaTry(sender: UIButton) {
+        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
+            return
+        }
+        let bgimage = ImgLib.FiltersPhoto.Grandpa!
+        transformClickedGlass(bgimage)
+        selectedFilter = sender
+    }
+    
+    func HanjianTry(sender: UIButton) {
+        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
+            return
+        }
+        let bgimage = ImgLib.FiltersPhoto.Hanjian!
         transformClickedGlass(bgimage)
         selectedFilter = sender
     }
@@ -230,7 +326,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     }
     
     func getAbsHeight(inputH: CGFloat) -> CGFloat {
-        NSLog("imageView.frame.origin.y = %f", imageView.frame.origin.y)
+//        NSLog("imageView.frame.origin.y = %f", imageView.frame.origin.y)
         return CGFloat(inputH) / self.imagePassed.size.width * 375.0 + imageView.frame.origin.y
     }
     
@@ -238,24 +334,19 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         //caculate rect
         let deltaX = self.getAbsWidth(self.landmarks.rightEyeOuter.x - self.landmarks.leftEyeOuter.x)
         let deltaY = self.getAbsHeight(self.landmarks.rightEyeOuter.y - self.landmarks.leftEyeOuter.y)
-        let glassWidth :CGFloat = 1.2 * sqrt( deltaX * deltaX + deltaY * deltaY )
+        let glassWidth :CGFloat = 1.3 * sqrt( deltaX * deltaX + deltaY * deltaY )
         let glassHeight: CGFloat = ( glassWidth / bgimage.size.width ) * bgimage.size.height
         NSLog("width = %f, height = %f", glassWidth, glassHeight)
        
         self.fgimageView = UIImageView(frame: CGRectMake(0, 0, glassWidth, glassHeight))
-        //translate
         let eye_centerX = self.getAbsWidth( ( landmarks.leftEyeOuter.x + landmarks.rightEyeOuter.x ) / 2 )
         let eye_centerY = self.getAbsHeight( ( landmarks.leftEyeOuter.y + landmarks.rightEyeOuter.y ) / 2 )
-   //     let glass_originCenterX = glassesWidth / 2
-   //     let glass_originCenterY = glassesHeight / 2
-        NSLog("eye center: %f", eye_centerX)
-   //     NSLog("glass center: %f", glass_originCenterX)
         self.fgimageView.center = CGPointMake(eye_centerX, eye_centerY)
-        self.ThreeDtransform(bgimage, landmarks:self.landmarks, glassesWidth:glassWidth, glassesHeight:glassHeight)
+        self.ThreeDtransform(bgimage, landmarks:self.landmarks, glassImageViewCenter: self.fgimageView.center)
         self.view.addSubview(self.fgimageView)
     }
     
-    func ThreeDtransform(fgImage: UIImage, landmarks: faceLandmarks, glassesWidth: CGFloat, glassesHeight:CGFloat ) {
+    func ThreeDtransform(fgImage: UIImage, landmarks: faceLandmarks, glassImageViewCenter: CGPoint) {
         fgimageView.image = fgImage
         var transform:CATransform3D = CATransform3DIdentity
         transform.m34 = 1.0 / -500
@@ -263,11 +354,17 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         let roll =  landmarks.roll
         let yaw = landmarks.yaw
         
-
+        //translate
+        let eye_centerX = self.getAbsWidth( ( landmarks.leftEyeOuter.x + landmarks.rightEyeOuter.x ) / 2 )
+        let eye_centerY = self.getAbsHeight( ( landmarks.leftEyeOuter.y + landmarks.rightEyeOuter.y ) / 2 )
+        let glass_originCenterX = glassImageViewCenter.x
+        let glass_originCenterY = glassImageViewCenter.y
+        NSLog("eye center: %f", eye_centerX)
+        NSLog("glass center: %f , %f", glass_originCenterX, glass_originCenterY)
         transform = CATransform3DRotate(transform, CGFloat(Double(yaw) * M_PI / 180.0), 0, 1, 0)
         transform = CATransform3DRotate(transform, CGFloat(Double(pitch) * M_PI / 180.0), 1, 0, CGFloat(0.0))
         transform = CATransform3DRotate(transform, CGFloat(Double(roll) * M_PI / 180.0), 0, 0, CGFloat(1.0))
-   //     transform = CATransform3DTranslate(transform, eye_centerX - glass_originCenterX  , eye_centerY - glass_originCenterY , 0.0 )
+        transform = CATransform3DTranslate(transform, eye_centerX - glass_originCenterX  , eye_centerY - glass_originCenterY , 0.0 )
 
         transform = CATransform3DTranslate(transform, 0.0  , 0.0 , CGFloat(50) )
         fgimageView.layer.transform = transform

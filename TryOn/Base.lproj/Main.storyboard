@@ -35,13 +35,15 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mca-1K-Dqh">
                                 <rect key="frame" x="125" y="178" width="133" height="30"/>
-                                <state key="normal" title="PostRequest"/>
+                                <state key="normal" title="PostRequest">
+                                    <color key="titleColor" red="1" green="0.8862745098" blue="0.0" alpha="0.44" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="clickSendPostRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F8D-Ib-FWH"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.85226810708939227" blue="0.61356730147230754" alpha="0.44" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.88627450980392153" blue="0.0" alpha="0.44" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="eI3-yF-yDj"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>

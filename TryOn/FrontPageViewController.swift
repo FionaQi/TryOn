@@ -20,7 +20,7 @@ class FrontPageViewController: UIViewController, UINavigationControllerDelegate,
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.yellowColor()
+        view.backgroundColor = ColorSpace.View.backgroundColor
         
         //take photo button
         takePhotoBtn = UIButton(frame: CGRectMake(self.view.frame.width/2 - 70, self.view.frame.height/2, 50, 50)) //TODO
