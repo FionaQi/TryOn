@@ -465,7 +465,7 @@
 				INFOPLIST_FILE = TryOn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ardl.TryOn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ard.TryOn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TryOn-Bridging-Header.h";
 			};
@@ -479,7 +479,7 @@
 				INFOPLIST_FILE = TryOn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ardl.TryOn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ard.TryOn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TryOn-Bridging-Header.h";
 			};

@@ -9,9 +9,12 @@
 import UIKit
 
 
-class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate {
+class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
-
+    var imagePicker: UIImagePickerController!
+    var takePhotoBtn: UIButton!
+    var selectPhotoBtn: UIButton!
+    
     let filterSelectors: [GlassesType: Selector] = [
         GlassesType.round: "roundTry:",
         GlassesType.Oval: "OvalTry:",
@@ -63,14 +66,41 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     var savedFloatingView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.layer.backgroundColor = UIColor.whiteColor().CGColor
+        self.view.layer.backgroundColor = ColorSpace.View.backgroundColor.CGColor
+        loadImageScrollView()
+        loadTopButtons()
+        loadBottomToolbar()
+//        let transform: CGAffineTransform = CGAffineTransformMakeScale(1.25, 1.25)
+//        imageView.transform = transform
+        animBackground.addFloatingView(self)
+        let animationLoader = FeHandwriting(view: self.view)
+        self.view.addSubview(animationLoader)
+        animationLoader.showWhileExecutingBlock({
+                sleep(6)
+            }, completion: {
+                animationLoader.hidden = true
+                animBackground.removeFloatingView(self)
+        })
+        
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            self.landmarks = faceAPI.uploadImage(self.imagePassed)
+            self.glassRect = CGRectMake(50, 50,  100, 30)
+            self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, self.glassRect.width, self.glassRect.height))
+            self.view.addSubview(self.fgimageView)
+            dispatch_async(dispatch_get_main_queue()) {
+//                self.spin.stopAnimating()
+            }
+        }
+       
+    }
+    
+    func loadImageScrollView() {
         //image view
         scrollView = UIScrollView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height))
         self.view.addSubview(scrollView)
-        
         imageView = UIImageView(image: imagePassed)
         
-       // landmarks.initfaceLandmarks()
         self.automaticallyAdjustsScrollViewInsets = false;
         self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
         scrollView.delegate = self
@@ -93,12 +123,14 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         scrollView.decelerationRate = 0
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
-        
+    }
+    
+    func loadTopButtons() {
         //button
-//        cancelBtn = UIButton(frame: CGRect(x:10, y:22, width:42, height:42))
-//        cancelBtn.setBackgroundImage(UIImage(named:"cross"), forState: UIControlState.Normal)
-//        cancelBtn.addTarget(self, action:"CancelBtnTouchUp:", forControlEvents:UIControlEvents.TouchUpInside)
-//        self.view.addSubview(cancelBtn)
+        //        cancelBtn = UIButton(frame: CGRect(x:10, y:22, width:42, height:42))
+        //        cancelBtn.setBackgroundImage(UIImage(named:"cross"), forState: UIControlState.Normal)
+        //        cancelBtn.addTarget(self, action:"CancelBtnTouchUp:", forControlEvents:UIControlEvents.TouchUpInside)
+        //        self.view.addSubview(cancelBtn)
         saveBtn = UIButton(frame: CGRect(x:self.view.frame.width - 52, y:52, width:42, height:42))
         saveBtn.setBackgroundImage(UIImage(named:"check"), forState: UIControlState.Normal)
         saveBtn.setBackgroundImage(UIImage(named:"cross"), forState: UIControlState.Highlighted)
@@ -109,8 +141,8 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         let backBtnImg = UIImage(named:"cross")?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0))
         UIBarButtonItem.appearance().setBackButtonBackgroundImage(backBtnImg, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
         self.navigationController?.navigationBar.backItem?.title = ""
-        
-        //bottom tool bar
+    }
+    func loadBottomToolbar() {
         var toolbarItems: [UIBarButtonItem] = []
         for glassType in filterOrder {
             let filterBtn = BottomToolbarHelper.filterBtn(glassType, parentView: self, handler: filterSelectors[glassType]!)
@@ -121,37 +153,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         self.selectedFilter = beautyButton
         // Build scrollable bottom toolbar
         toolbar = ScrollableBottomToolbar.insertScrollableBottomToolbar(self, btnArray: toolbarItems)
-        //spinner
-//        spin = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-//        spin.center = self.view.center
-//        spin.hidesWhenStopped = true;
-//        self.view.addSubview(spin)
-//        spin.startAnimating()
-        animBackground.addFloatingView(self)
-        let animationLoader = FeHandwriting(view: self.view)
-        
-        self.view.addSubview(animationLoader)
-        animationLoader.showWhileExecutingBlock({
-                sleep(6)
-            }, completion: {
-                animationLoader.hidden = true
-                animBackground.removeFloatingView(self)
-        })
-        
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
-            
-            self.landmarks = faceAPI.uploadImage(self.imagePassed)
-            self.glassRect = CGRectMake(50, 50,  100, 30)
-            self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, self.glassRect.width, self.glassRect.height))
-            self.view.addSubview(self.fgimageView)
-            dispatch_async(dispatch_get_main_queue()) {
-//                self.spin.stopAnimating()
-            }
-        }
-       
     }
-    
     override func viewWillAppear(animated: Bool) {
         centerScrollViewContents()
     }
