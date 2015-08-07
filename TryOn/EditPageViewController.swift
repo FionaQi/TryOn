@@ -14,7 +14,8 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     var imagePicker: UIImagePickerController!
     var takePhotoBtn: UIButton!
     var selectPhotoBtn: UIButton!
-    
+    var savedImgView: UIImageView!
+    var savedLabel: UILabel!
     let filterSelectors: [GlassesType: Selector] = [
         GlassesType.round: "roundTry:",
         GlassesType.Oval: "OvalTry:",
@@ -49,7 +50,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     
     var cancelBtn: UIButton!
     var saveBtn: UIButton!
-    var imagePassed: UIImage!
+    var CurrentPhoto: UIImage!
     var imageView: UIImageView!
     var scrollView: UIScrollView!
     var toolbar: UIToolbar!
@@ -66,40 +67,20 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     var savedFloatingView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.layer.backgroundColor = ColorSpace.View.backgroundColor.CGColor
+        self.view.layer.backgroundColor = UIColor.grayColor().CGColor
         loadImageScrollView()
-        loadTopButtons()
+        loadPhotoButtons()
+        loadSaveButtons()
         loadBottomToolbar()
-//        let transform: CGAffineTransform = CGAffineTransformMakeScale(1.25, 1.25)
-//        imageView.transform = transform
-        animBackground.addFloatingView(self)
-        let animationLoader = FeHandwriting(view: self.view)
-        self.view.addSubview(animationLoader)
-        animationLoader.showWhileExecutingBlock({
-                sleep(6)
-            }, completion: {
-                animationLoader.hidden = true
-                animBackground.removeFloatingView(self)
-        })
-        
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
-            self.landmarks = faceAPI.uploadImage(self.imagePassed)
-            self.glassRect = CGRectMake(50, 50,  100, 30)
-            self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, self.glassRect.width, self.glassRect.height))
-            self.view.addSubview(self.fgimageView)
-            dispatch_async(dispatch_get_main_queue()) {
-//                self.spin.stopAnimating()
-            }
-        }
-       
+        initDefaultLandmarks()
     }
     
     func loadImageScrollView() {
         //image view
         scrollView = UIScrollView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height))
         self.view.addSubview(scrollView)
-        imageView = UIImageView(image: imagePassed)
+        let defaultimg = UIImage(named: "default_image.jpg")!
+        imageView = UIImageView(image: defaultimg)
         
         self.automaticallyAdjustsScrollViewInsets = false;
         self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height);
@@ -109,7 +90,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         imageView.contentMode = UIViewContentMode.ScaleAspectFill
         imageView.userInteractionEnabled = false
         
-        scrollView.contentSize = imagePassed.size
+        scrollView.contentSize = defaultimg.size
         scrollView.contentMode = UIViewContentMode.ScaleAspectFill
         let scrollViewFrame = scrollView.frame
         let scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width
@@ -125,22 +106,37 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         scrollView.showsVerticalScrollIndicator = false
     }
     
-    func loadTopButtons() {
-        //button
-        //        cancelBtn = UIButton(frame: CGRect(x:10, y:22, width:42, height:42))
-        //        cancelBtn.setBackgroundImage(UIImage(named:"cross"), forState: UIControlState.Normal)
-        //        cancelBtn.addTarget(self, action:"CancelBtnTouchUp:", forControlEvents:UIControlEvents.TouchUpInside)
-        //        self.view.addSubview(cancelBtn)
-        saveBtn = UIButton(frame: CGRect(x:self.view.frame.width - 52, y:52, width:42, height:42))
+    func loadPhotoButtons() {
+        self.navigationController?.navigationBarHidden = true
+        //take photo button
+        takePhotoBtn = UIButton(frame: CGRectMake(self.view.frame.width/2 - 70, 22, 42, 42)) //TODO
+        takePhotoBtn.setBackgroundImage(UIImage(named: "takephoto"), forState: UIControlState.Normal)
+        takePhotoBtn.setBackgroundImage(UIImage(named:"selectphoto"), forState: UIControlState.Highlighted)
+        takePhotoBtn.addTarget(self, action: "takePhotoTouchUp:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(takePhotoBtn)
+        
+        //select photo button
+        selectPhotoBtn = UIButton(frame: CGRectMake(self.view.frame.width/2 + 20, 22, 42, 42)) //TODO
+        selectPhotoBtn.setBackgroundImage(UIImage(named:"selectphoto"), forState: UIControlState.Normal)
+        selectPhotoBtn.setBackgroundImage(UIImage(named:"takephoto"), forState: UIControlState.Highlighted)
+        selectPhotoBtn.addTarget(self, action: "selectPhotoTouchUp:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(selectPhotoBtn)
+    }
+    
+    func loadSaveButtons() {
+        cancelBtn = UIButton(frame: CGRect(x:10, y:22, width:42, height:42))
+        cancelBtn.setBackgroundImage(UIImage(named:"cross"), forState: UIControlState.Normal)
+        cancelBtn.addTarget(self, action:"CancelBtnTouchUp:", forControlEvents:UIControlEvents.TouchUpInside)
+        self.view.addSubview(cancelBtn)
+     
+        saveBtn = UIButton(frame: CGRect(x:self.view.frame.width - 52, y:22, width:42, height:42))
         saveBtn.setBackgroundImage(UIImage(named:"check"), forState: UIControlState.Normal)
         saveBtn.setBackgroundImage(UIImage(named:"cross"), forState: UIControlState.Highlighted)
         saveBtn.addTarget(self, action:"SaveBtnTouchUp:", forControlEvents:UIControlEvents.TouchUpInside)
         self.view.addSubview(saveBtn)
         
-        // nav bar
-        let backBtnImg = UIImage(named:"cross")?.resizableImageWithCapInsets(UIEdgeInsetsMake(0, 0, 0, 0))
-        UIBarButtonItem.appearance().setBackButtonBackgroundImage(backBtnImg, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
-        self.navigationController?.navigationBar.backItem?.title = ""
+        cancelBtn.hidden = true
+        saveBtn.hidden = true
     }
     func loadBottomToolbar() {
         var toolbarItems: [UIBarButtonItem] = []
@@ -153,6 +149,34 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         self.selectedFilter = beautyButton
         // Build scrollable bottom toolbar
         toolbar = ScrollableBottomToolbar.insertScrollableBottomToolbar(self, btnArray: toolbarItems)
+    }
+    func loadAnimation() {
+        animBackground.addFloatingView(self)
+        let animationLoader = FeHandwriting(view: self.view)
+        self.view.addSubview(animationLoader)
+        animationLoader.showWhileExecutingBlock({
+            sleep(6)
+            }, completion: {
+                animationLoader.hidden = true
+                animBackground.removeFloatingView(self)
+        })
+    }
+    func calculateFace() {
+        if( fgimageView !== nil ) {
+            self.fgimageView.removeFromSuperview()
+        }
+        
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            self.landmarks = faceAPI.uploadImage(self.CurrentPhoto)
+            self.glassRect = CGRectMake(50, 50,  100, 30)
+            self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, self.glassRect.width, self.glassRect.height))
+            self.view.addSubview(self.fgimageView)
+            dispatch_async(dispatch_get_main_queue()) {
+                self.cancelBtn.hidden = false
+                self.saveBtn.hidden = false
+            }
+        }
     }
     override func viewWillAppear(animated: Bool) {
         centerScrollViewContents()
@@ -195,8 +219,20 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     button click action
 ************* */
     func SaveBtnTouchUp(sender: AnyObject) {
-         UIImageWriteToSavedPhotosAlbum(self.imagePassed, nil, nil, nil)
+         UIImageWriteToSavedPhotosAlbum(self.CurrentPhoto, nil, nil, nil)
          SavedViewHelper.addFloatingView(self)
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            sleep(2)
+            dispatch_async(dispatch_get_main_queue()) {
+                SavedViewHelper.removeFloatingView(self)
+            }
+        }
+    }
+    
+    func CancelBtnTouchUp(sender: AnyObject) {
+        self.cancelBtn.hidden = true
+        self.saveBtn.hidden = true
     }
     
     func roundTry(sender: UIButton) {
@@ -319,17 +355,30 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         }
         oldFilter.layer.backgroundColor = UIColor.clearColor().CGColor
         newFilter.layer.backgroundColor = ColorSpace.View.BarItemHighlightedBgColor.CGColor
-        fgimageView.removeFromSuperview()
+        if( fgimageView !== nil ) {
+            fgimageView.removeFromSuperview()
+        }
         return true
     }
     
     func getAbsWidth(inputW: CGFloat) -> CGFloat {
-        return CGFloat(inputW) / self.imagePassed.size.width * 375.0
+        var imageWidth: CGFloat!
+        if( self.CurrentPhoto == nil ) {
+            imageWidth = 750.0
+        } else {
+            imageWidth = self.CurrentPhoto.size.width
+        }
+        return CGFloat(inputW) / imageWidth * 375.0
     }
     
     func getAbsHeight(inputH: CGFloat) -> CGFloat {
-//        NSLog("imageView.frame.origin.y = %f", imageView.frame.origin.y)
-        return CGFloat(inputH) / self.imagePassed.size.width * 375.0 + imageView.frame.origin.y
+        var imageWidth: CGFloat!
+        if( self.CurrentPhoto == nil ) {
+            imageWidth = 750.0
+        } else {
+            imageWidth = self.CurrentPhoto.size.width
+        }
+        return CGFloat(inputH) / imageWidth * 375.0 + imageView.frame.origin.y
     }
     
     func transformClickedGlass(bgimage: UIImage) {
@@ -370,5 +419,45 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
 
         transform = CATransform3DTranslate(transform, 0.0  , 0.0 , CGFloat(50) )
         fgimageView.layer.transform = transform
+    }
+    
+    //************image picker************/
+    func takePhotoTouchUp(sender: AnyObject) {
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .Camera
+        imagePicker.cameraDevice = .Front
+        let cameraTransform: CGAffineTransform //= CGAffineTransformMakeScale(1.25, 1.25)
+        var transform:CATransform3D = CATransform3DIdentity
+        transform.m34 = 1.0 / -500
+        transform = CATransform3DRotate(transform, CGFloat( M_PI ), 0, CGFloat(1.0), 0)
+        cameraTransform = CATransform3DGetAffineTransform(transform)
+        imagePicker.cameraViewTransform = cameraTransform
+        presentViewController(imagePicker, animated: true, completion: nil) //TODO
+    }
+    func selectPhotoTouchUp(sender: AnyObject?) {
+        imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .SavedPhotosAlbum
+        presentViewController(imagePicker, animated: true, completion: nil) //TODO
+        
+    }
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        imagePicker.dismissViewControllerAnimated(true, completion: nil)
+        CurrentPhoto = info[UIImagePickerControllerOriginalImage] as? UIImage
+      //  performSegueWithIdentifier("processPhoto", sender: nil)
+        imageView.image = CurrentPhoto
+        loadAnimation()
+        calculateFace()
+    }
+    
+    func initDefaultLandmarks() {
+        self.landmarks = faceLandmarks()
+        landmarks.initfaceLandmarks()
+        self.landmarks.roll = -13.3
+        self.landmarks.pitch = 0.0
+        self.landmarks.yaw = -12.6
+        self.landmarks.leftEyeOuter = CGPointMake(219, 427)
+        self.landmarks.rightEyeOuter = CGPointMake(490, 335)
     }
 }

@@ -14,47 +14,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="gYH-7x-Xqe"/>
+                        <segue destination="QUo-1b-mhA" kind="relationship" relationship="rootViewController" id="k6l-7Y-qse"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hyh-vy-y16" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-862" y="56"/>
-        </scene>
-        <!--Front Page View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="FrontPageViewController" customModule="TryOn" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mca-1K-Dqh">
-                                <rect key="frame" x="125" y="178" width="133" height="30"/>
-                                <state key="normal" title="PostRequest">
-                                    <color key="titleColor" red="1" green="0.8862745098" blue="0.0" alpha="0.44" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="clickSendPostRequest:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F8D-Ib-FWH"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="0.88627450980392153" blue="0.0" alpha="0.44" colorSpace="calibratedRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="eI3-yF-yDj"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
-                    <connections>
-                        <outlet property="postRequestBtn" destination="Mca-1K-Dqh" id="kWu-QN-9nX"/>
-                        <segue destination="QUo-1b-mhA" kind="show" identifier="processPhoto" id="h3M-7q-cD2"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="165" y="297"/>
         </scene>
         <!--Edit Page View Controller-->
         <scene sceneID="Xmb-VD-g5H">
@@ -69,10 +34,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="nQL-Ay-AyF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bQ0-dz-zbb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="953" y="364"/>
+            <point key="canvasLocation" x="-127" y="31"/>
         </scene>
     </scenes>
 </document>

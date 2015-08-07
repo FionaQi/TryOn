@@ -20,24 +20,27 @@ class SavedViewHelper {
         processingView.view.addSubview(processingView.savedFloatingView)
         
         let savedImg = UIImage(named: "saved")
-        let savedImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
-        savedImgView.center = CGPointMake(processingView.savedFloatingView.center.x, processingView.savedFloatingView.center.y - 10)
+        processingView.savedImgView = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
+        processingView.savedImgView.center = CGPointMake(processingView.savedFloatingView.center.x, processingView.savedFloatingView.center.y - 10)
 
-        savedImgView.image = savedImg
-        processingView.view.addSubview(savedImgView)
+        processingView.savedImgView.image = savedImg
+        processingView.view.addSubview(processingView.savedImgView)
         
         //text
-        let savedLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 5*gridUnit, height: 45))
-        savedLabel.center = CGPointMake(processingView.savedFloatingView.center.x, processingView.savedFloatingView.center.y + 35)
-        savedLabel.text = "Saved to album!"
-        savedLabel.font = UIFont.systemFontOfSize(17)
-        savedLabel.textColor = UIColor.whiteColor()
-        savedLabel.textAlignment = NSTextAlignment.Center
-        processingView.view.addSubview(savedLabel)
+        processingView.savedLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 5*gridUnit, height: 45))
+        processingView.savedLabel.center = CGPointMake(processingView.savedFloatingView.center.x, processingView.savedFloatingView.center.y + 35)
+        processingView.savedLabel.text = "Saved to album!"
+        processingView.savedLabel.font = UIFont.systemFontOfSize(17)
+        processingView.savedLabel.textColor = UIColor.whiteColor()
+        processingView.savedLabel.textAlignment = NSTextAlignment.Center
+        processingView.view.addSubview( processingView.savedLabel)
     }
     
     class func removeFloatingView (processingView: EditPageViewController) {
         processingView.savedFloatingView.removeFromSuperview()
+        processingView.savedImgView.removeFromSuperview()
+        processingView.savedLabel.removeFromSuperview()
+
     }
     
 }

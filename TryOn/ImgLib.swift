@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 class ImgLib{
-
     class Button {
 //        static let takePhoto = UIImage(named: "takephoto")
 //        static let selectPhoto = UIImage(named: "selectphoto")

@@ -68,14 +68,10 @@ class FrontPageViewController: UIViewController, UINavigationControllerDelegate,
         imagePicker.sourceType = .Camera
         imagePicker.cameraDevice = .Front
         let cameraTransform: CGAffineTransform //= CGAffineTransformMakeScale(1.25, 1.25)
-//        cameraTransform = CGAffineTransformMake(-1, 0, 0, 1, self.view.frame.size.width, 0)
-//        imagePicker.cameraViewTransform = cameraTransform
         var transform:CATransform3D = CATransform3DIdentity
         transform.m34 = 1.0 / -500
-        
         transform = CATransform3DRotate(transform, CGFloat( M_PI ), 0, CGFloat(1.0), 0)
         cameraTransform = CATransform3DGetAffineTransform(transform)
-//        imagePicker.view.layer.transform = transform
         imagePicker.cameraViewTransform = cameraTransform
         presentViewController(imagePicker, animated: true, completion: nil) //TODO
     }

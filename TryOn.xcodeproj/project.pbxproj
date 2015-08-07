@@ -11,8 +11,6 @@
 		B038F33B1B64C57800DEE8BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B038F3391B64C57800DEE8BA /* Main.storyboard */; };
 		B038F33D1B64C57800DEE8BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B038F33C1B64C57800DEE8BA /* Assets.xcassets */; };
 		B038F3401B64C57800DEE8BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B038F33E1B64C57800DEE8BA /* LaunchScreen.storyboard */; };
-		B038F3491B64C5C800DEE8BA /* EditPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B038F3481B64C5C800DEE8BA /* EditPageViewController.swift */; };
-		B038F34D1B64C61200DEE8BA /* FrontPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B038F34C1B64C61200DEE8BA /* FrontPageViewController.swift */; };
 		B038F3501B64CF1F00DEE8BA /* ImgLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = B038F34F1B64CF1F00DEE8BA /* ImgLib.swift */; };
 		B038F3561B650DE200DEE8BA /* SavedViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B038F3551B650DE200DEE8BA /* SavedViewHelper.swift */; };
 		B038F3581B651C0200DEE8BA /* BottomToolBarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B038F3571B651C0200DEE8BA /* BottomToolBarHelper.swift */; };
@@ -39,6 +37,8 @@
 		B03DBBC01B67174F005FDC21 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = B03DBBB81B67174F005FDC21 /* UIWebView+AFNetworking.m */; };
 		B03DBBC51B6719CF005FDC21 /* faceAPI.mm in Sources */ = {isa = PBXBuildFile; fileRef = B03DBBC41B6719CF005FDC21 /* faceAPI.mm */; };
 		B079C9251B69CEB5000FE040 /* animBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = B079C9241B69CEB5000FE040 /* animBackground.swift */; };
+		B080E7E41B732A580049B197 /* EditPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080E7E31B732A580049B197 /* EditPageViewController.swift */; };
+		B080E7EC1B747E270049B197 /* RoundBlurButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080E7EB1B747E270049B197 /* RoundBlurButton.swift */; };
 		B0906A451B68BE20007820B8 /* faceLandmarks.m in Sources */ = {isa = PBXBuildFile; fileRef = B0906A441B68BE20007820B8 /* faceLandmarks.m */; };
 		B0906A4E1B69BDC4007820B8 /* FeHandwriting.m in Sources */ = {isa = PBXBuildFile; fileRef = B0906A4D1B69BDC4007820B8 /* FeHandwriting.m */; };
 /* End PBXBuildFile section */
@@ -50,8 +50,6 @@
 		B038F33C1B64C57800DEE8BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B038F33F1B64C57800DEE8BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B038F3411B64C57800DEE8BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B038F3481B64C5C800DEE8BA /* EditPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageViewController.swift; sourceTree = "<group>"; };
-		B038F34C1B64C61200DEE8BA /* FrontPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrontPageViewController.swift; sourceTree = "<group>"; };
 		B038F34F1B64CF1F00DEE8BA /* ImgLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgLib.swift; sourceTree = "<group>"; };
 		B038F3551B650DE200DEE8BA /* SavedViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedViewHelper.swift; sourceTree = "<group>"; };
 		B038F3571B651C0200DEE8BA /* BottomToolBarHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomToolBarHelper.swift; sourceTree = "<group>"; };
@@ -100,6 +98,8 @@
 		B03DBBC41B6719CF005FDC21 /* faceAPI.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = faceAPI.mm; sourceTree = "<group>"; };
 		B03DBBC61B6719E0005FDC21 /* faceAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = faceAPI.h; sourceTree = "<group>"; };
 		B079C9241B69CEB5000FE040 /* animBackground.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = animBackground.swift; sourceTree = "<group>"; };
+		B080E7E31B732A580049B197 /* EditPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPageViewController.swift; sourceTree = "<group>"; };
+		B080E7EB1B747E270049B197 /* RoundBlurButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundBlurButton.swift; sourceTree = "<group>"; };
 		B0906A441B68BE20007820B8 /* faceLandmarks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = faceLandmarks.m; sourceTree = "<group>"; };
 		B0906A491B68BF8B007820B8 /* faceLandmarks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = faceLandmarks.h; sourceTree = "<group>"; };
 		B0906A4C1B69BDB1007820B8 /* FeHandwriting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeHandwriting.h; sourceTree = "<group>"; };
@@ -140,6 +140,7 @@
 		B038F3341B64C57800DEE8BA /* TryOn */ = {
 			isa = PBXGroup;
 			children = (
+				B080E7EA1B747E070049B197 /* UI */,
 				B0906A4B1B69BD50007820B8 /* Animation */,
 				B0906A4A1B69BD21007820B8 /* faceAPI */,
 				B03DBBC31B6718CE005FDC21 /* TryOn-Bridging-Header.h */,
@@ -159,8 +160,7 @@
 		B038F3471B64C59000DEE8BA /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				B038F3481B64C5C800DEE8BA /* EditPageViewController.swift */,
-				B038F34C1B64C61200DEE8BA /* FrontPageViewController.swift */,
+				B080E7E31B732A580049B197 /* EditPageViewController.swift */,
 			);
 			name = VC;
 			sourceTree = "<group>";
@@ -170,6 +170,7 @@
 			children = (
 				B038F34F1B64CF1F00DEE8BA /* ImgLib.swift */,
 				B038F3551B650DE200DEE8BA /* SavedViewHelper.swift */,
+				B080E7EB1B747E270049B197 /* RoundBlurButton.swift */,
 				B038F3571B651C0200DEE8BA /* BottomToolBarHelper.swift */,
 				B038F3591B651ED500DEE8BA /* ColorSpace.swift */,
 				B038F35F1B65219F00DEE8BA /* Constants.swift */,
@@ -226,6 +227,13 @@
 				B03DBBB81B67174F005FDC21 /* UIWebView+AFNetworking.m */,
 			);
 			path = "UIKit+AFNetworking";
+			sourceTree = "<group>";
+		};
+		B080E7EA1B747E070049B197 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 		B0906A4A1B69BD21007820B8 /* faceAPI */ = {
@@ -322,6 +330,7 @@
 			files = (
 				B0906A4E1B69BDC4007820B8 /* FeHandwriting.m in Sources */,
 				B03DBBA51B67173E005FDC21 /* AFURLSessionManager.m in Sources */,
+				B080E7E41B732A580049B197 /* EditPageViewController.swift in Sources */,
 				B03DBBA21B67173E005FDC21 /* AFURLConnectionOperation.m in Sources */,
 				B03DBBBF1B67174F005FDC21 /* UIRefreshControl+AFNetworking.m in Sources */,
 				B03DBBC51B6719CF005FDC21 /* faceAPI.mm in Sources */,
@@ -331,9 +340,7 @@
 				B038F35A1B651ED500DEE8BA /* ColorSpace.swift in Sources */,
 				B03DBBBB1B67174F005FDC21 /* UIAlertView+AFNetworking.m in Sources */,
 				B03DBB9E1B67173E005FDC21 /* AFHTTPRequestOperationManager.m in Sources */,
-				B038F34D1B64C61200DEE8BA /* FrontPageViewController.swift in Sources */,
 				B079C9251B69CEB5000FE040 /* animBackground.swift in Sources */,
-				B038F3491B64C5C800DEE8BA /* EditPageViewController.swift in Sources */,
 				B0906A451B68BE20007820B8 /* faceLandmarks.m in Sources */,
 				B03DBBBD1B67174F005FDC21 /* UIImageView+AFNetworking.m in Sources */,
 				B03DBB9F1B67173E005FDC21 /* AFHTTPSessionManager.m in Sources */,
@@ -341,6 +348,7 @@
 				B03DBBB91B67174F005FDC21 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				B038F3581B651C0200DEE8BA /* BottomToolBarHelper.swift in Sources */,
 				B038F3361B64C57800DEE8BA /* AppDelegate.swift in Sources */,
+				B080E7EC1B747E270049B197 /* RoundBlurButton.swift in Sources */,
 				B038F3561B650DE200DEE8BA /* SavedViewHelper.swift in Sources */,
 				B03DBBA11B67173E005FDC21 /* AFSecurityPolicy.m in Sources */,
 				B038F3501B64CF1F00DEE8BA /* ImgLib.swift in Sources */,
@@ -465,7 +473,7 @@
 				INFOPLIST_FILE = TryOn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ard.TryOn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ar.TryOn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TryOn-Bridging-Header.h";
 			};
@@ -479,7 +487,7 @@
 				INFOPLIST_FILE = TryOn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ard.TryOn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ar.TryOn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TryOn-Bridging-Header.h";
 			};
