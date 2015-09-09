@@ -54,13 +54,15 @@ class BottomToolbarHelper {
     }
     
     class func setBtnImg(btnimg: UIImage, glassesType: GlassesType, parentView: UIViewController, handler: Selector) -> UIButton{
-        let btn: UIButton = UIButton(frame: CGRectMake(0, 0, btnimg.size.width, btnimg.size.height))
-        let bgLayer:UIView = UIView(frame: CGRectMake(0, btnimg.size.height  , btnimg.size.width, 10))
+        let btnHeight = parentView.view.frame.height * 0.066
+        let btnWidth = parentView.view.frame.height * 0.168
+        let btn: UIButton = UIButton(frame: CGRectMake(0, 0, btnWidth, btnHeight))
+        let bgLayer:UIView = UIView(frame: CGRectMake(0, btnHeight , btnWidth, 10))
         bgLayer.backgroundColor = ColorSpace.View.BarBtnItemTitleBgLayerBottomColor
         btn.addSubview(bgLayer)
         bgLayer.layer.zPosition = 0
-        btn.titleEdgeInsets = UIEdgeInsetsMake(55.0 , 0.0, 0.0, 0.0 )
-        btn.titleLabel?.font = UIFont.systemFontOfSize(CGFloat(11.0))
+        btn.titleEdgeInsets = UIEdgeInsetsMake(btnHeight + 10 , 0.0, 0.0, 0.0 )
+        btn.titleLabel?.font = UIFont.systemFontOfSize(CGFloat(10.0))
         btn.titleLabel?.layer.zPosition = 1
         btn.setTitle(glassesType.simpleDesp(), forState: UIControlState.Normal)
         btn.setBackgroundImage(btnimg, forState: UIControlState.Normal)
@@ -69,13 +71,15 @@ class BottomToolbarHelper {
         return btn
     }
     class func setBtnImgNatual(btnimg: UIImage, parentView: UIViewController, handler: Selector) -> UIButton{
-        let btn: UIButton = UIButton(frame: CGRectMake(0, 0, btnimg.size.width, btnimg.size.height))
-        let bgLayer:UIView = UIView(frame: CGRectMake(0, btnimg.size.height  , btnimg.size.width, 10))
+        let btnHeight = parentView.view.frame.height * 0.066
+        let btnWidth = parentView.view.frame.height * 0.168
+        let btn: UIButton = UIButton(frame: CGRectMake(0, 0, btnWidth, btnHeight))
+        let bgLayer:UIView = UIView(frame: CGRectMake(0, btnHeight , btnWidth, 10))
         bgLayer.backgroundColor = ColorSpace.View.BarBtnItemTitleBgLayerBottomColor
         btn.addSubview(bgLayer)
         bgLayer.layer.zPosition = 0
-        btn.titleEdgeInsets = UIEdgeInsetsMake(55.0 , 0.0, 0.0, 0.0 )
-        btn.titleLabel?.font = UIFont.systemFontOfSize(CGFloat(11.0))
+        btn.titleEdgeInsets = UIEdgeInsetsMake(btnHeight + 10 , 0.0, 0.0, 0.0 )
+        btn.titleLabel?.font = UIFont.systemFontOfSize(CGFloat(10.0))
         btn.titleLabel?.layer.zPosition = 1
         btn.setTitle("Natual", forState: UIControlState.Normal)
         btn.setBackgroundImage(btnimg, forState: UIControlState.Normal)
