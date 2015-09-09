@@ -108,8 +108,8 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         selectPhotoBtn = createButton(UIImage(named:"selectphoto")!, action: "selectPhotoTouchUp:", posX: 12 + gap * 2)
         saveBtn = createButton(UIImage(named:"check")!, action: "SaveBtnTouchUp:", posX:  12 + gap * 3)
         
-        cancelBtn.hidden = true
-        saveBtn.hidden = true
+//        cancelBtn.hidden = true
+//        saveBtn.hidden = true
     }
     func loadBottomToolbar() {
         var toolbarItems: [UIBarButtonItem] = []
@@ -146,8 +146,8 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
             self.fgimageView = UIImageView(frame: CGRectMake(self.glassRect.origin.x, self.glassRect.origin.y, self.glassRect.width, self.glassRect.height))
             self.view.addSubview(self.fgimageView)
             dispatch_async(dispatch_get_main_queue()) {
-                self.cancelBtn.hidden = false
-                self.saveBtn.hidden = false
+//                self.cancelBtn.hidden = false
+//                self.saveBtn.hidden = false
             }
         }
     }
@@ -204,8 +204,8 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     }
     
     func CancelBtnTouchUp(sender: AnyObject) {
-        self.cancelBtn.hidden = true
-        self.saveBtn.hidden = true
+//        self.cancelBtn.hidden = true
+//        self.saveBtn.hidden = true
     }
     
     
