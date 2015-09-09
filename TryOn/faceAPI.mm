@@ -11,8 +11,6 @@
 
 @implementation faceAPI
 
-static NSString *OxfordKey = @"";
-
 
 +(faceLandmarks*) uploadImage:(UIImage *)image {
     faceLandmarks *landmarks = [[faceLandmarks alloc] init];
@@ -33,6 +31,10 @@ static NSString *OxfordKey = @"";
     
     NSURL *url = [NSURL URLWithString:path ];
     
+    NSString* keypath = [[NSBundle mainBundle] pathForResource:@"key" ofType:@"txt"];
+    NSString* OxfordKey = [NSString stringWithContentsOfFile:keypath
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:NULL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:imageData];

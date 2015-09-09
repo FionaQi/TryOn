@@ -48,7 +48,7 @@ class BottomToolbarHelper {
                 filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto.Hanjian!, glassesType: glassesType, parentView: parentView, handler: handler))
                 break
             default:
-                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto._Hefe!, glassesType: glassesType, parentView: parentView, handler: handler))
+                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto.round!, glassesType: glassesType, parentView: parentView, handler: handler))
         }
         return filterBtn
     }

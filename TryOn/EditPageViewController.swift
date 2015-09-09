@@ -118,7 +118,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
             toolbarItems.append(filterBtn)
         }
         
-        let beautyButton = BottomToolbarHelper.setBtnImgNatual(ImgLib.FiltersPhoto._Dawn!, parentView: self, handler: "beautyTab:")
+        let beautyButton = BottomToolbarHelper.setBtnImgNatual(ImgLib.FiltersPhoto.round!, parentView: self, handler: "beautyTab:")
         self.selectedFilter = beautyButton
         // Build scrollable bottom toolbar
         toolbar = ScrollableBottomToolbar.insertScrollableBottomToolbar(self, btnArray: toolbarItems)
@@ -275,7 +275,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         } else {
             imageWidth = self.CurrentPhoto.size.width
         }
-        return CGFloat(inputW) / imageWidth * 375.0
+        return CGFloat(inputW) / imageWidth * self.view.frame.width
     }
     
     func getAbsHeight(inputH: CGFloat) -> CGFloat {
@@ -285,7 +285,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         } else {
             imageWidth = self.CurrentPhoto.size.width
         }
-        return CGFloat(inputH) / imageWidth * 375.0 + imageView.frame.origin.y
+        return CGFloat(inputH) / imageWidth * self.view.frame.width + imageView.frame.origin.y
     }
     
     func transformClickedGlass(bgimage: UIImage) {

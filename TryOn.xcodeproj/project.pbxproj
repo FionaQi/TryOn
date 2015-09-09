@@ -42,7 +42,21 @@
 		B0906A451B68BE20007820B8 /* faceLandmarks.m in Sources */ = {isa = PBXBuildFile; fileRef = B0906A441B68BE20007820B8 /* faceLandmarks.m */; };
 		B0906A4E1B69BDC4007820B8 /* FeHandwriting.m in Sources */ = {isa = PBXBuildFile; fileRef = B0906A4D1B69BDC4007820B8 /* FeHandwriting.m */; };
 		B0CC0B851B9FD9A10019C150 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CC0B841B9FD9A10019C150 /* Animation.swift */; };
+		B0CC0B881BA007890019C150 /* key.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = B0CC0B871BA007890019C150 /* key.txt */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B0CC0B861BA007470019C150 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				B0CC0B881BA007890019C150 /* key.txt in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B038F3321B64C57800DEE8BA /* TryOn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TryOn.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +120,7 @@
 		B0906A4C1B69BDB1007820B8 /* FeHandwriting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeHandwriting.h; sourceTree = "<group>"; };
 		B0906A4D1B69BDC4007820B8 /* FeHandwriting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeHandwriting.m; sourceTree = "<group>"; };
 		B0CC0B841B9FD9A10019C150 /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		B0CC0B871BA007890019C150 /* key.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = key.txt; path = TryOn/key.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +139,7 @@
 		B038F3291B64C57800DEE8BA = {
 			isa = PBXGroup;
 			children = (
+				B0CC0B871BA007890019C150 /* key.txt */,
 				B038F35D1B651F4900DEE8BA /* UIKit.framework */,
 				B038F35B1B651F2700DEE8BA /* CoreGraphics.framework */,
 				B038F3341B64C57800DEE8BA /* TryOn */,
@@ -270,6 +286,7 @@
 				B038F32E1B64C57800DEE8BA /* Sources */,
 				B038F32F1B64C57800DEE8BA /* Frameworks */,
 				B038F3301B64C57800DEE8BA /* Resources */,
+				B0CC0B861BA007470019C150 /* CopyFiles */,
 			);
 			buildRules = (
 			);
