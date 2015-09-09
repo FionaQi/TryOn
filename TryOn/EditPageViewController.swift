@@ -192,18 +192,27 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     button click action
 ************* */
     func SaveBtnTouchUp(sender: AnyObject) {
-         UIImageWriteToSavedPhotosAlbum(self.CurrentPhoto, nil, nil, nil)
-         SavedViewHelper.addFloatingView(self)
-        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
-        dispatch_async(dispatch_get_global_queue(priority, 0)) {
-            sleep(2)
-            dispatch_async(dispatch_get_main_queue()) {
-                SavedViewHelper.removeFloatingView(self)
+        if( self.CurrentPhoto !== nil ) {
+            if( fgimageView !== nil ) {
+                fgimageView.removeFromSuperview()
+            }
+            UIImageWriteToSavedPhotosAlbum(self.CurrentPhoto, nil, nil, nil)
+            SavedViewHelper.addFloatingView(self)
+            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+            dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                sleep(2)
+                dispatch_async(dispatch_get_main_queue()) {
+                    SavedViewHelper.removeFloatingView(self)
+                }
             }
         }
+        
     }
     
     func CancelBtnTouchUp(sender: AnyObject) {
+        if( fgimageView !== nil ) {
+            fgimageView.removeFromSuperview()
+        }
 //        self.cancelBtn.hidden = true
 //        self.saveBtn.hidden = true
     }
