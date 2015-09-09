@@ -21,13 +21,13 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         GlassesType.round,
         GlassesType.Oval,
         GlassesType.Wayfares,
-        GlassesType.Thick,
         GlassesType.Nerd,
         GlassesType.Geek,
         GlassesType.Fly,
         GlassesType.Grandpa,
         GlassesType.Hanjian,
-        GlassesType.Cateye
+        GlassesType.Cateye,
+        GlassesType.Thick
     ]
     
     var cancelBtn: UIButton!

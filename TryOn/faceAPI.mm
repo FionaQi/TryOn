@@ -11,7 +11,7 @@
 
 @implementation faceAPI
 
-static NSString *OxfordKey = @"4a61f11144f04d908a0275ce5885469d";
+static NSString *OxfordKey = @"";
 
 
 +(faceLandmarks*) uploadImage:(UIImage *)image {
@@ -31,7 +31,6 @@ static NSString *OxfordKey = @"4a61f11144f04d908a0275ce5885469d";
     NSString* string = [array componentsJoinedByString:@"&"];
     path = [path stringByAppendingFormat:@"?%@", string];
     
-//    NSLog(@"%@", path);
     NSURL *url = [NSURL URLWithString:path ];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -44,22 +43,11 @@ static NSString *OxfordKey = @"4a61f11144f04d908a0275ce5885469d";
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id result) {
-    //    NSLog(@"Success:***** %@",  result);
   //      NSLog(@"Success:***** %@",  result[0]);
-    
         
         NSString *s_pitch = [[[result[0] valueForKey:@"attributes"]valueForKey:@"headPose"]valueForKey:@"pitch"];
         NSString *s_roll = [[[result[0] valueForKey:@"attributes"]valueForKey:@"headPose"]valueForKey:@"roll"];
         NSString *s_yaw = [[[result[0] valueForKey:@"attributes"]valueForKey:@"headPose"]valueForKey:@"yaw"];
-
-//        CGFloat pitch = [s_pitch floatValue];
-//        CGFloat roll = [s_roll floatValue];
-//        CGFloat yaw = [s_yaw floatValue];
-//        
-//        NSLog(@"%f", pitch);
-//        NSLog(@"%f", roll);
-//        NSLog(@"%f", yaw);
-
         
         landmarks.pitch = [s_pitch floatValue];
         landmarks.roll = [s_roll floatValue];
