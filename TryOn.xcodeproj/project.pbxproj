@@ -41,6 +41,7 @@
 		B080E7EC1B747E270049B197 /* RoundBlurButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B080E7EB1B747E270049B197 /* RoundBlurButton.swift */; };
 		B0906A451B68BE20007820B8 /* faceLandmarks.m in Sources */ = {isa = PBXBuildFile; fileRef = B0906A441B68BE20007820B8 /* faceLandmarks.m */; };
 		B0906A4E1B69BDC4007820B8 /* FeHandwriting.m in Sources */ = {isa = PBXBuildFile; fileRef = B0906A4D1B69BDC4007820B8 /* FeHandwriting.m */; };
+		B0CC0B851B9FD9A10019C150 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CC0B841B9FD9A10019C150 /* Animation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,7 @@
 		B0906A491B68BF8B007820B8 /* faceLandmarks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = faceLandmarks.h; sourceTree = "<group>"; };
 		B0906A4C1B69BDB1007820B8 /* FeHandwriting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeHandwriting.h; sourceTree = "<group>"; };
 		B0906A4D1B69BDC4007820B8 /* FeHandwriting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeHandwriting.m; sourceTree = "<group>"; };
+		B0CC0B841B9FD9A10019C150 /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				B038F3571B651C0200DEE8BA /* BottomToolBarHelper.swift */,
 				B038F3591B651ED500DEE8BA /* ColorSpace.swift */,
 				B038F35F1B65219F00DEE8BA /* Constants.swift */,
+				B0CC0B841B9FD9A10019C150 /* Animation.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -356,6 +359,7 @@
 				B03DBBA01B67173E005FDC21 /* AFNetworkReachabilityManager.m in Sources */,
 				B03DBBC01B67174F005FDC21 /* UIWebView+AFNetworking.m in Sources */,
 				B03DBBA41B67173E005FDC21 /* AFURLResponseSerialization.m in Sources */,
+				B0CC0B851B9FD9A10019C150 /* Animation.swift in Sources */,
 				B038F3601B65219F00DEE8BA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,7 +477,7 @@
 				INFOPLIST_FILE = TryOn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ar.TryOn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ardlab3.TryOn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TryOn-Bridging-Header.h";
 			};
@@ -487,7 +491,7 @@
 				INFOPLIST_FILE = TryOn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ar.TryOn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ardlab3.TryOn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "TryOn-Bridging-Header.h";
 			};

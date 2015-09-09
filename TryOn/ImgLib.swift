@@ -17,7 +17,7 @@ class ImgLib{
         static let round = UIImage(named:"round")
         static let Oval = UIImage(named:"oval")
         static let Wayfares = UIImage(named:"glasses3")
-        static let Cateye = UIImage(named:"glasses4")
+        static let Cateye = UIImage(named:"girlglasses")
         static let Thick = UIImage(named:"glasses5")
         static let Nerd = UIImage(named:"glasses6")
         static let Geek = UIImage(named:"glasses7")

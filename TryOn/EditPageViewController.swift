@@ -16,36 +16,18 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     var selectPhotoBtn: UIButton!
     var savedImgView: UIImageView!
     var savedLabel: UILabel!
-    let filterSelectors: [GlassesType: Selector] = [
-        GlassesType.round: "roundTry:",
-        GlassesType.Oval: "OvalTry:",
-        GlassesType.Wayfares: "WayfaresTry:",
-        GlassesType.Cateye: "CateyeTry:",
-        GlassesType.Thick: "ThickTry:",
-        GlassesType.Nerd: "NerdTry:",
-        GlassesType.Geek: "GeekTry:",
-        GlassesType.Fly: "FlyTry:",
-        GlassesType.Grandpa: "GrandpaTry:",
-        GlassesType.Hanjian: "HanjianTry:",
-        GlassesType.Dawn: "DawnTry:",
-        GlassesType.Proces: "ProcessTry:",
-        GlassesType.Hefe: "HefeTry:"
-    ]
     
     let filterOrder = [
         GlassesType.round,
         GlassesType.Oval,
         GlassesType.Wayfares,
-        GlassesType.Cateye,
         GlassesType.Thick,
         GlassesType.Nerd,
         GlassesType.Geek,
         GlassesType.Fly,
         GlassesType.Grandpa,
         GlassesType.Hanjian,
-        GlassesType.Dawn,
-        GlassesType.Proces,
-        GlassesType.Hefe,
+        GlassesType.Cateye
     ]
     
     var cancelBtn: UIButton!
@@ -69,8 +51,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         super.viewDidLoad()
         self.view.layer.backgroundColor = UIColor.grayColor().CGColor
         loadImageScrollView()
-        loadPhotoButtons()
-        loadSaveButtons()
+        loadButtons()
         loadBottomToolbar()
         initDefaultLandmarks()
     }
@@ -106,34 +87,26 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         scrollView.showsVerticalScrollIndicator = false
     }
     
-    func loadPhotoButtons() {
-        self.navigationController?.navigationBarHidden = true
-        //take photo button
-        takePhotoBtn = UIButton(frame: CGRectMake(self.view.frame.width/2 - 70, 22, 42, 42)) //TODO
-        takePhotoBtn.setBackgroundImage(UIImage(named: "takephoto"), forState: UIControlState.Normal)
-        takePhotoBtn.setBackgroundImage(UIImage(named:"selectphoto"), forState: UIControlState.Highlighted)
-        takePhotoBtn.addTarget(self, action: "takePhotoTouchUp:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(takePhotoBtn)
+    func createButton( btnImg: UIImage, action: Selector, posX: CGFloat ) -> UIButton {
+        let curButton: UIButton = UIButton(frame: CGRectMake(posX, 22, 45, 45))
+        curButton.imageEdgeInsets = UIEdgeInsetsMake(12.0 , 12.0, 12.0 , 12.0)
+        curButton.setImage(btnImg, forState:  UIControlState.Normal)
+        curButton.layer.cornerRadius = curButton.frame.size.width/2
+        curButton.backgroundColor = UIColor.whiteColor()
+
         
-        //select photo button
-        selectPhotoBtn = UIButton(frame: CGRectMake(self.view.frame.width/2 + 20, 22, 42, 42)) //TODO
-        selectPhotoBtn.setBackgroundImage(UIImage(named:"selectphoto"), forState: UIControlState.Normal)
-        selectPhotoBtn.setBackgroundImage(UIImage(named:"takephoto"), forState: UIControlState.Highlighted)
-        selectPhotoBtn.addTarget(self, action: "selectPhotoTouchUp:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.view.addSubview(selectPhotoBtn)
+        curButton.addTarget(self, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(curButton)
+        return curButton
     }
     
-    func loadSaveButtons() {
-        cancelBtn = UIButton(frame: CGRect(x:10, y:22, width:42, height:42))
-        cancelBtn.setBackgroundImage(UIImage(named:"cross"), forState: UIControlState.Normal)
-        cancelBtn.addTarget(self, action:"CancelBtnTouchUp:", forControlEvents:UIControlEvents.TouchUpInside)
-        self.view.addSubview(cancelBtn)
-     
-        saveBtn = UIButton(frame: CGRect(x:self.view.frame.width - 52, y:22, width:42, height:42))
-        saveBtn.setBackgroundImage(UIImage(named:"check"), forState: UIControlState.Normal)
-        saveBtn.setBackgroundImage(UIImage(named:"cross"), forState: UIControlState.Highlighted)
-        saveBtn.addTarget(self, action:"SaveBtnTouchUp:", forControlEvents:UIControlEvents.TouchUpInside)
-        self.view.addSubview(saveBtn)
+    func loadButtons() {
+        self.navigationController?.navigationBarHidden = true
+        let gap = (self.view.frame.width - 24 - 45) / 3
+        cancelBtn = createButton(UIImage(named:"cross")!, action: "CancelBtnTouchUp:", posX: 12)
+        takePhotoBtn = createButton(UIImage(named:"takephoto")!, action: "takePhotoTouchUp:", posX: 12 + gap)
+        selectPhotoBtn = createButton(UIImage(named:"selectphoto")!, action: "selectPhotoTouchUp:", posX: 12 + gap * 2)
+        saveBtn = createButton(UIImage(named:"check")!, action: "SaveBtnTouchUp:", posX:  12 + gap * 3)
         
         cancelBtn.hidden = true
         saveBtn.hidden = true
@@ -141,7 +114,7 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
     func loadBottomToolbar() {
         var toolbarItems: [UIBarButtonItem] = []
         for glassType in filterOrder {
-            let filterBtn = BottomToolbarHelper.filterBtn(glassType, parentView: self, handler: filterSelectors[glassType]!)
+            let filterBtn = BottomToolbarHelper.filterBtn(glassType, parentView: self, handler: "glassItemClicked:")
             toolbarItems.append(filterBtn)
         }
         
@@ -235,120 +208,54 @@ class EditPageViewController: UIViewController, UIScrollViewDelegate, UINavigati
         self.saveBtn.hidden = true
     }
     
-    func roundTry(sender: UIButton) {
+    
+    func glassItemClicked(sender: UIButton) {
         if (!tabChangeOn(selectedFilter, newFilter: sender)) {
             return
         }
-        let bgimage = ImgLib.glass_ori.Round_ori!
-        transformClickedGlass(bgimage)
         selectedFilter = sender
-    }
-
-    func OvalTry(sender: UIButton) {
-        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
-            return
+        
+        var bgimage : UIImage!
+        let currentChoose = sender.currentTitle
+        switch currentChoose {
+        case GlassesType.round.simpleDesp() as String:
+            bgimage = ImgLib.FiltersPhoto.round!
+            break
+        case GlassesType.Oval.simpleDesp() as String:
+            bgimage = ImgLib.FiltersPhoto.Oval!
+            break
+        case GlassesType.Wayfares.simpleDesp() as String:
+            bgimage = ImgLib.FiltersPhoto.Wayfares!
+            break
+        case GlassesType.Cateye.simpleDesp() as String:
+            bgimage = ImgLib.FiltersPhoto.Cateye!
+            break
+        case GlassesType.Thick.simpleDesp() as String:
+            bgimage = ImgLib.FiltersPhoto.Thick!
+            break
+        case GlassesType.Nerd.simpleDesp() as String:
+            bgimage = ImgLib.FiltersPhoto.Nerd!
+            break
+        case GlassesType.Geek.simpleDesp() as String:
+            bgimage = ImgLib.FiltersPhoto.Geek!
+            break
+        case GlassesType.Fly.simpleDesp() as String:
+            bgimage = ImgLib.FiltersPhoto.Fly!
+            break
+        case GlassesType.Grandpa.simpleDesp() as String:
+            bgimage = ImgLib.FiltersPhoto.Grandpa!
+            break
+        case GlassesType.Hanjian.simpleDesp() as String:
+            bgimage = ImgLib.FiltersPhoto.Hanjian!
+            break
+        default:
+            break
         }
         
-        let bgimage = ImgLib.glass_ori.Oval_ori!
         transformClickedGlass(bgimage)
-        selectedFilter = sender
-    }
-    func WayfaresTry(sender: UIButton) {
-        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
-            return
-        }
-        let bgimage = ImgLib.FiltersPhoto.Wayfares!
-        transformClickedGlass(bgimage)
-        selectedFilter = sender
-    }
-    
-    func CateyeTry(sender: UIButton) {
-        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
-            return
-        }
         
-        let bgimage = ImgLib.FiltersPhoto.Cateye!
-        transformClickedGlass(bgimage)
-        selectedFilter = sender
     }
-    func ThickTry(sender: UIButton) {
-        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
-            return
-        }
-        let bgimage = ImgLib.FiltersPhoto.Thick!
-        transformClickedGlass(bgimage)
-        selectedFilter = sender
-    }
-    
-    func NerdTry(sender: UIButton) {
-        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
-            return
-        }
-        let bgimage = ImgLib.FiltersPhoto.Nerd!
-        transformClickedGlass(bgimage)
-        selectedFilter = sender
-    }
-    func GeekTry(sender: UIButton) {
-        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
-            return
-        }
-        let bgimage = ImgLib.FiltersPhoto.Geek!
-        transformClickedGlass(bgimage)
-        selectedFilter = sender
-    }
-    
-    func FlyTry(sender: UIButton) {
-        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
-            return
-        }
-        let bgimage = ImgLib.FiltersPhoto.Fly!
-        transformClickedGlass(bgimage)
-        selectedFilter = sender
-    }
-    func GrandpaTry(sender: UIButton) {
-        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
-            return
-        }
-        let bgimage = ImgLib.FiltersPhoto.Grandpa!
-        transformClickedGlass(bgimage)
-        selectedFilter = sender
-    }
-    
-    func HanjianTry(sender: UIButton) {
-        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
-            return
-        }
-        let bgimage = ImgLib.FiltersPhoto.Hanjian!
-        transformClickedGlass(bgimage)
-        selectedFilter = sender
-    }
-    func DawnTry(sender: UIButton) {
-        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
-            return
-        }
-        let bgimage = ImgLib.FiltersPhoto._Dawn!
-        transformClickedGlass(bgimage)
-        selectedFilter = sender
-    }
-    
-    func ProcessTry(sender: UIButton) {
-        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
-            return
-        }
-        let bgimage = ImgLib.FiltersPhoto._Process!
-        transformClickedGlass(bgimage)
-        selectedFilter = sender
-    }
-    
-    func HefeTry(sender: UIButton) {
-        if (!tabChangeOn(selectedFilter, newFilter: sender)) {
-            return
-        }
-        let bgimage = ImgLib.FiltersPhoto._Hefe!
-        transformClickedGlass(bgimage)
-        selectedFilter = sender
-    }
-    
+        
     func tabChangeOn(oldFilter: UIButton, newFilter: UIButton) -> Bool{
         if (oldFilter == newFilter) {
             return false

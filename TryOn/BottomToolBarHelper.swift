@@ -47,16 +47,6 @@ class BottomToolbarHelper {
             case GlassesType.Hanjian:
                 filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto.Hanjian!, glassesType: glassesType, parentView: parentView, handler: handler))
                 break
-            case GlassesType.Dawn:
-                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto._Dawn!, glassesType: glassesType, parentView: parentView, handler: handler))
-                
-                break
-            case GlassesType.Proces:
-                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto._Process!, glassesType: glassesType, parentView: parentView, handler: handler))
-                break
-            case GlassesType.Hefe:
-                filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto._Hefe!, glassesType: glassesType, parentView: parentView, handler: handler))
-                break
             default:
                 filterBtn = UIBarButtonItem(customView: self.setBtnImg(ImgLib.FiltersPhoto._Hefe!, glassesType: glassesType, parentView: parentView, handler: handler))
         }
@@ -104,14 +94,7 @@ class ScrollableBottomToolbar {
             let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
             let blurEffectView = UIVisualEffectView(effect: blurEffect)
             blurEffectView.frame = CGRectMake(parentView.view.frame.origin.x, parentView.view.frame.height * 0.9, parentView.view.frame.size.width, parentView.view.frame.height * 0.10)            ////RECT
-            parentView.view.addSubview(blurEffectView) //if you have more UIViews on screen, use insertSubview:belowSubview: to place it underneath the lowest view instead
-            
-            //add auto layout constraints so that the blur fills the screen upon rotating device
-//            blurEffectView.translatesAutoresizingMaskIntoConstraints = false
-//            parentView.view.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: parentView.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0))
-//            parentView.view.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: parentView.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0))
-//            parentView.view.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Leading, relatedBy: NSLayoutRelation.Equal, toItem: parentView.view, attribute: NSLayoutAttribute.Leading, multiplier: 1, constant: 0))
-//            parentView.view.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Trailing, relatedBy: NSLayoutRelation.Equal, toItem: parentView.view, attribute: NSLayoutAttribute.Trailing, multiplier: 1, constant: 0))
+            parentView.view.addSubview(blurEffectView)
         } else {
             parentView.view.backgroundColor = ColorSpace.View.BarBtnItemTitleBgLayerTopColor
         }
@@ -128,8 +111,7 @@ class ScrollableBottomToolbar {
         bottomToolbarScrollView.showsHorizontalScrollIndicator = false
         bottomToolbarScrollView.userInteractionEnabled = true
         
-        // TODO Bug
-        bottomToolbar.frame = CGRect(x:0, y:0, width: parentView.view.frame.width/4 * CGFloat(btnArray.count + 1), height: bottomToolbar.frame.height)
+        bottomToolbar.frame = CGRect(x:0, y:0, width: parentView.view.frame.width/3 * CGFloat(btnArray.count + 1), height: bottomToolbar.frame.height)
         bottomToolbar.bounds = bottomToolbar.frame
         bottomToolbar.autoresizingMask = UIViewAutoresizing.None
         bottomToolbar.userInteractionEnabled = true
